@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="shortcuts">
+        <item>ak</item>		<!-- akesi -->
+        <item>al</item>		<!-- alasa -->
+        <item>aa</item>		<!-- ali -->
+        <item>an</item>		<!-- anpa -->
+        <item>at</item>		<!-- ante -->
+        <item>au</item>		<!-- anu -->
+        <item>aw</item>		<!-- awen -->
+        <item>ee</item>		<!-- en -->
+        <item>es</item>		<!-- esun -->
+        <item>ij</item>		<!-- ijo -->
+        <item>ii</item>		<!-- ike -->
+        <item>il</item>		<!-- ilo -->
+        <item>in</item>		<!-- insa -->
+        <item>ja</item>		<!-- jaki -->
+        <item>jj</item>		<!-- jan -->
+        <item>je</item>		<!-- jelo -->
+        <item>jo</item>		<!-- jo -->
+        <item>ka</item>		<!-- kala -->
+        <item>km</item>		<!-- kalama -->
+        <item>kk</item>		<!-- kama -->
+        <item>ks</item>		<!-- kasi -->
+        <item>ke</item>		<!-- ken -->
+        <item>kp</item>		<!-- kepeken -->
+        <item>ki</item>		<!-- kili -->
+        <item>kw</item>		<!-- kiwen -->
+        <item>ko</item>		<!-- ko -->
+        <item>kn</item>		<!-- kon -->
+        <item>ku</item>		<!-- kule -->
+        <item>kl</item>		<!-- kulupu -->
+        <item>kt</item>		<!-- kute -->
+        <item>ll</item>		<!-- la -->
+        <item>la</item>		<!-- lape -->
+        <item>ls</item>		<!-- laso -->
+        <item>lw</item>		<!-- lawa -->
+        <item>le</item>		<!-- len -->
+        <item>lt</item>		<!-- lete -->
+        <item>lii</item>	<!-- lili -->
+        <item>lin</item>	<!-- linja -->
+        <item>lu</item>		<!-- lipu -->
+        <item>lj</item>		<!-- loje -->
+        <item>lo</item>		<!-- lon -->
+        <item>lk</item>		<!-- luka -->
+        <item>ln</item>		<!-- lukin -->
+        <item>lp</item>		<!-- lupa -->
+        <item>mm</item>		<!-- ma -->
+        <item>ma</item>		<!-- mama -->
+        <item>mi</item>		<!-- mani -->
+        <item>me</item>		<!-- meli -->
+        <item>mj</item>		<!-- mije -->
+        <item>mk</item>		<!-- moku -->
+        <item>ml</item>		<!-- moli -->
+        <item>mo</item>		<!-- monsi -->
+        <item>mu</item>		<!-- mu -->
+        <item>mn</item>		<!-- mun -->
+        <item>ms</item>		<!-- musi -->
+        <item>mt</item>		<!-- mute -->
+        <item>na</item>		<!-- nanpa -->
+        <item>ns</item>		<!-- nasa -->
+        <item>ni</item>		<!-- nasin -->
+        <item>ne</item>		<!-- nena -->
+        <item>nn</item>		<!-- nimi -->
+        <item>no</item>		<!-- noka -->
+        <item>oo</item>		<!-- o -->
+        <item>ol</item>		<!-- olin -->
+        <item>on</item>		<!-- ona -->
+        <item>op</item>		<!-- open -->
+        <item>pk</item>		<!-- pakala -->
+        <item>pl</item>		<!-- pali -->
+        <item>ps</item>		<!-- palisa -->
+        <item>pa</item>		<!-- pan -->
+        <item>pn</item>		<!-- pana -->
+        <item>pp</item>		<!-- pi -->
+        <item>pil</item>	<!-- pilin -->
+        <item>pm</item>		<!-- pimeja -->
+        <item>pii</item>	<!-- pini -->
+        <item>pip</item>	<!-- pipi -->
+        <item>poo</item>	<!-- poka -->
+        <item>pok</item>	<!-- poki -->
+        <item>pu</item>		<!-- pu -->
+        <item>sa</item>		<!-- sama -->
+        <item>sei</item>	<!-- seli -->
+        <item>seo</item>	<!-- selo -->
+        <item>sm</item>		<!-- seme -->
+        <item>see</item>	<!-- sewi -->
+        <item>sj</item>		<!-- sijelo -->
+        <item>sk</item>		<!-- sike -->
+        <item>si</item>		<!-- sin -->
+        <item>ss</item>		<!-- sina -->
+        <item>sp</item>		<!-- sinpin -->
+        <item>st</item>		<!-- sitelen -->
+        <item>sn</item>		<!-- sona -->
+        <item>sw</item>		<!-- soweli -->
+        <item>sl</item>		<!-- suli -->
+        <item>so</item>		<!-- suno -->
+        <item>sup</item>	<!-- supa -->
+        <item>suu</item>	<!-- suwi -->
+        <item>ta</item>		<!-- tan -->
+        <item>ts</item>		<!-- taso -->
+        <item>tt</item>		<!-- tawa -->
+        <item>te</item>		<!-- telo -->
+        <item>tn</item>		<!-- tenpo -->
+        <item>to</item>		<!-- tomo -->
+        <item>tu</item>		<!-- tu -->
+        <item>un</item>		<!-- unpa -->
+        <item>ut</item>		<!-- uta -->
+        <item>uu</item>		<!-- utala -->
+        <item>wl</item>		<!-- walo -->
+        <item>wn</item>		<!-- wan -->
+        <item>ws</item>		<!-- waso -->
+        <item>wa</item>		<!-- wawa -->
+        <item>ww</item>		<!-- wile -->
+
+        <item>a%</item>
+        <item>ala%</item>
+        <item>e%</item>
+        <item>li%</item>
+        <item>mi%</item>
+        <item>ni%</item>
+        <item>pona%</item>
+        <item>toki%</item>
+
+        <item>%\"</item>
+        <item>%.</item>
+        <item>%\?</item>
+
+        <item>%:</item>
+        <item>%!</item>
+    </string-array>
+    
+    <string-array name="words">
+        <item>akesi</item>
+        <item>alasa</item>
+        <item>ali</item>
+        <item>anpa</item>
+        <item>ante</item>
+        <item>anu</item>
+        <item>awen</item>
+        <item>en</item>
+        <item>esun</item>
+        <item>ijo</item>
+        <item>ike</item>
+        <item>ilo</item>
+        <item>insa</item>
+        <item>jaki</item>
+        <item>jan</item>
+        <item>jelo</item>
+        <item>jo</item>
+        <item>kala</item>
+        <item>kalama</item>
+        <item>kama</item>
+        <item>kasi</item>
+        <item>ken</item>
+        <item>kepeken</item>
+        <item>kili</item>
+        <item>kiwen</item>
+        <item>ko</item>
+        <item>kon</item>
+        <item>kule</item>
+        <item>kulupu</item>
+        <item>kute</item>
+        <item>la</item>
+        <item>lape</item>
+        <item>laso</item>
+        <item>lawa</item>
+        <item>len</item>
+        <item>lete</item>
+        <item>lili</item>
+        <item>linja</item>
+        <item>lipu</item>
+        <item>loje</item>
+        <item>lon</item>
+        <item>luka</item>
+        <item>lukin</item>
+        <item>lupa</item>
+        <item>ma</item>
+        <item>mama</item>
+        <item>mani</item>
+        <item>meli</item>
+        <item>mije</item>
+        <item>moku</item>
+        <item>moli</item>
+        <item>monsi</item>
+        <item>mu</item>
+        <item>mun</item>
+        <item>musi</item>
+        <item>mute</item>
+        <item>nanpa</item>
+        <item>nasa</item>
+        <item>nasin</item>
+        <item>nena</item>
+        <item>nimi</item>
+        <item>noka</item>
+        <item>o</item>
+        <item>olin</item>
+        <item>ona</item>
+        <item>open</item>
+        <item>pakala</item>
+        <item>pali</item>
+        <item>palisa</item>
+        <item>pan</item>
+        <item>pana</item>
+        <item>pi</item>
+        <item>pilin</item>
+        <item>pimeja</item>
+        <item>pini</item>
+        <item>pipi</item>
+        <item>poka</item>
+        <item>poki</item>
+        <item>pu</item>
+        <item>sama</item>
+        <item>seli</item>
+        <item>selo</item>
+        <item>seme</item>
+        <item>sewi</item>
+        <item>sijelo</item>
+        <item>sike</item>
+        <item>sin</item>
+        <item>sina</item>
+        <item>sinpin</item>
+        <item>sitelen</item>
+        <item>sona</item>
+        <item>soweli</item>
+        <item>suli</item>
+        <item>suno</item>
+        <item>supa</item>
+        <item>suwi</item>
+        <item>tan</item>
+        <item>taso</item>
+        <item>tawa</item>
+        <item>telo</item>
+        <item>tenpo</item>
+        <item>tomo</item>
+        <item>tu</item>
+        <item>unpa</item>
+        <item>uta</item>
+        <item>utala</item>
+        <item>walo</item>
+        <item>wan</item>
+        <item>waso</item>
+        <item>wawa</item>
+        <item>wile</item>
+
+        <item>a</item>
+        <item>ala</item>
+        <item>e</item>
+        <item>li</item>
+        <item>mi</item>
+        <item>ni</item>
+        <item>pona</item>
+        <item>toki</item>
+
+        <item>\"</item>
+        <item>.</item>
+        <item>\?</item>
+
+        <item>:</item>
+        <item>!</item>
+    </string-array>
+</resources>

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="uk.co.cocosquid.tokiponakeyboard.TokiPonaIMESettings">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/li"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/li"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/mi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/mi"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/bracket"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/bracket"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/ali"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/ali"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/en"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/en"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/ike"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/ike"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/dot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/dot"
+            style="@style/ButtonStyle" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/e"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/e"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/toki"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/toki"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/quote"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/quote"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/jan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/jan"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/kama"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/kama"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/la"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/la"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/question"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/question"
+            style="@style/ButtonStyle" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/ni"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/ni"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/pona"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/pona"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/ma"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/ma"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/nimi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/nimi"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/o"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/o"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/pi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/pi"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/delete"
+            style="@style/ButtonStyle" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/a"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/a"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/ala"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/ala"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/sina"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/sina"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/tawa"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/tawa"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/utala"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/utala"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/wile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/wile"
+            style="@style/ButtonStyle" />
+
+        <Button
+            android:fontFamily="@font/linja_pona_4_2"
+            android:id="@+id/enter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1428"
+            android:text="@string/enter"
+            style="@style/ButtonStyle" />
+
+    </LinearLayout>
+
+</merge>
