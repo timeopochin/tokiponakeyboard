@@ -42,6 +42,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
     private int quoteNestingLevel = 0;
     private String currentShortcut = "";
     private String compoundFirstWordShortcut = "";
+    private String suffix = "";
 
     // Text manipulation
     private CharSequence currentText;
@@ -249,6 +250,10 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
         if (endKey == null) {
 
             // Single key sent
+            boolean nothingWritten = false;
+            if (getPreviousCharacter().equals("“") && !getNextCharacter().isEmpty() && !getNextCharacter().equals("”") && !startKey.equals("%“") && !startKey.equals("%delete") && !startKey.equals("%enter")) {
+                suffix = " ";
+            }
             if (startKey.charAt(0) == '%') {
 
                 // Special key sent
@@ -257,10 +262,6 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
                     if (inBrackets && !startKey.equals("%]") && !startKey.equals("%[")) {
                         action("%]", null);
                     }
-                }
-                if (getPreviousCharacter().equals("“") && !startKey.equals("%“") && !startKey.equals("%delete")) {
-                    moveCursorBackOne();
-                    updateCurrentState();
                 }
                 switch (startKey) {
                     case "%]":
@@ -291,8 +292,14 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
                     case "%“":
                         if (quoteNestingLevel > 0) {
                             write("”");
+                            if (!".:?!\n".contains(getNextCharacter()) && !getNextCharacter().isEmpty()) {
+                                write(" ");
+                            }
                         } else {
                             writeShortcut("“%");
+                            if (getNextCharacter().equals(" ")) {
+                                inputConnection.deleteSurroundingText(0, 1);
+                            }
                         }
                         break;
                     case "%.":
@@ -334,6 +341,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
                     currentShortcut += startKey;
                     setLayout("");
                     setLayout(currentShortcut);
+                    nothingWritten = true;
 
                 } else {
 
@@ -352,6 +360,10 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
                     }
                 }
             }
+            if (!suffix.isEmpty() && !nothingWritten) {
+                moveCursorBackOne();
+                suffix = "";
+            }
         } else {
 
             // Two keys sent
@@ -365,7 +377,14 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
                     switch (startKey) {
                         case "%[":
                         case "%“":
-                            action(startKey, null);
+                            if (quoteNestingLevel > 0) {
+                                writeShortcut("“%");
+                                if (getNextCharacter().equals(" ")) {
+                                    inputConnection.deleteSurroundingText(0, 1);
+                                }
+                            } else {
+                                action(startKey, null);
+                            }
                             break;
                         case "%.":
                             write(":");
@@ -415,15 +434,18 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
     }
 
     private void delete() {
-        updateTextInfo();// Not at the start of the input
+        updateTextInfo();
+        label:
         for (int i = beforeCursorText.length() - 1; i >= 0; i--) {
             String currentString = Character.toString(beforeCursorText.charAt(i));
             switch (currentString) {
                 case "“":
-                    if (i < beforeCursorText.length() - 1) {
+                    if (i == beforeCursorText.length() - 1) {
+                        inputConnection.deleteSurroundingText(1, 0);
+                    } else {
                         inputConnection.deleteSurroundingText(beforeCursorText.length() - i - 1, 0);
-                        return;
                     }
+                    break label;
                 case " ":
                 case "_":
                 case "”":
@@ -433,27 +455,39 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
                 case "!":
                 case "\n":
                     inputConnection.deleteSurroundingText(beforeCursorText.length() - i, 0);
-                    return;
+                    break label;
                 case "]":
 
                     // Move inside the brackets and delete from there
                     inputConnection.setSelection(i, i);
                     setBracket(true);
                     delete();
-                    return;
+                    break label;
 
                 case "[":
 
                     // Delete everything from the opening bracket up to the closing bracket
                     int endBracket = getEndBracketLocation();
-                    inputConnection.deleteSurroundingText(2, endBracket - beforeCursorText.length());
+                    inputConnection.deleteSurroundingText(1, endBracket - beforeCursorText.length());
+                    //if (getNextCharacter().equals(" ")) {
+                    //    inputConnection.deleteSurroundingText(0, 1);
+                    //}
                     setBracket(false);
-                    return;
+                    break label;
+                    //return;
+            }
+            if (i == 0) {
+
+                // Start of the input was reached
+                inputConnection.deleteSurroundingText(beforeCursorText.length(), 0);
             }
         }
 
-        // Start of the input was reached
-        inputConnection.deleteSurroundingText(beforeCursorText.length(), 0);
+        if ("% |“ ".contains(getAdjacentCharacters())) {
+            inputConnection.deleteSurroundingText(0, 1);
+        } else if (" %|  | ”| .| :| ?| !| \n".contains(getAdjacentCharacters())) {
+            inputConnection.deleteSurroundingText(1, 0);
+        }
     }
 
     private boolean doesShortcutExist(String shortcutToCheck) {
@@ -508,6 +542,19 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
         } else {
             return shortcutToFinish + shortcutToFinish.charAt(shortcutToFinish.length() - 1);
         }
+    }
+
+    private String getAdjacentCharacters() {
+        updateCurrentState();
+        String previous = getPreviousCharacter();
+        if (previous.isEmpty()) {
+            previous = "%";
+        }
+        String next = getNextCharacter();
+        if (next.isEmpty()) {
+            next = "%";
+        }
+        return previous + next;
     }
 
     private int getEndBracketLocation() {
@@ -631,7 +678,9 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
             String currentString = Character.toString(beforeCursorText.charAt(i));
             switch (currentString) {
                 case "“":
-                    moveTo = i + 1;
+                    if (moveTo == 0) {
+                        moveTo = i + 1;
+                    }
                     break;
                 case "\n":
                     if (moveTo == 0) {
@@ -691,7 +740,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
     }
 
     private void write(String toWrite) {
-        inputConnection.commitText(toWrite, 1);
+        inputConnection.commitText(toWrite + suffix, 1);
     }
 
     private void writeShortcut(String shortcut) {
