@@ -122,12 +122,13 @@
         <item>pona%</item>
         <item>toki%</item>
 
-        <item>%\"</item>
-        <item>%.</item>
-        <item>%\?</item>
+        <item>[%</item>
+        <item>“%</item>
+        <item>.%</item>
+        <item>\?%</item>
 
-        <item>%:</item>
-        <item>%!</item>
+        <item>:%</item>
+        <item>!%</item>
     </string-array>
     
     <string-array name="words">
@@ -252,7 +253,8 @@
         <item>pona</item>
         <item>toki</item>
 
-        <item>\"</item>
+        <item>[]</item>
+        <item>“</item>
         <item>.</item>
         <item>\?</item>
 

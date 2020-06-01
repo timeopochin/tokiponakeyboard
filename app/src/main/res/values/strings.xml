@@ -124,7 +124,7 @@
     <string name ="wile">wile</string>
     <string name="bracket">[</string>
     <string name="dot">.</string>
-    <string name="quote">\"</string>
+    <string name="quote">“</string>
     <string name="question">\?</string>
     <string name="delete">⌫</string>
     <string name="enter">➤</string>

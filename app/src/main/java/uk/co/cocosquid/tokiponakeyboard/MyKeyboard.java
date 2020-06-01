@@ -6,6 +6,7 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.ExtractedText;
 import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -23,6 +25,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
     // Input connection
     private InputConnection inputConnection;
     private EditorInfo editorInfo;
+    private InputMethodManager inputMethodManager;
 
     // Key detection
     private int previousKey;
@@ -35,11 +38,12 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
     private String[] words;
 
     // Word construction
-    private String currentShortcut = "";
     private boolean inBrackets = false;
-    private boolean unfinishedCompound = false;
-    private String prefix = "";
-    private String suffix = " ";
+    private int quoteNestingLevel = 0;
+    private String currentShortcut = "";
+    private String compoundFirstWordShortcut = "";
+
+    // Text manipulation
     private CharSequence currentText;
     private CharSequence beforeCursorText;
     private CharSequence afterCursorText;
@@ -170,7 +174,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
 
         keyValues.put(R.id.bracket, "%[");
         keyValues.put(R.id.dot, "%.");
-        keyValues.put(R.id.quote, "%\"");
+        keyValues.put(R.id.quote, "%“");
         keyValues.put(R.id.question, "%?");
         keyValues.put(R.id.enter, "%enter");
 
@@ -180,387 +184,6 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
         Resources res = getResources();
         shortcuts = res.getStringArray(R.array.shortcuts);
         words = res.getStringArray(R.array.words);
-    }
-
-    private void delete() {
-        updateTextInfo();
-        if (beforeCursorText.length() > 0) {
-            if (beforeCursorText.charAt(beforeCursorText.length() - 1) == '[') {
-                int endBracket = beforeCursorText.length() - 1;
-                while (true) {
-                    if (currentText.charAt(endBracket) == ']') {
-                        inputConnection.deleteSurroundingText(1, endBracket - beforeCursorText.length() + 2);
-                        setBracket(false);
-                        return;
-                    }
-                    endBracket++;
-                }
-            } else {
-
-                // Delete at least one character
-                inputConnection.deleteSurroundingText(1, 0);
-                updateTextInfo();
-
-                // Delete the rest of the word
-                for (int i = beforeCursorText.length() - 1; i >= 0; i--) {
-                    String currentString = Character.toString(beforeCursorText.charAt(i));
-                    switch (currentString) {
-                        case "_":
-                            inputConnection.deleteSurroundingText(beforeCursorText.length() - i, 0);
-                            setBracket(true);
-                            //updateCurrentState();
-                            return;
-                        case "]":
-                            inputConnection.setSelection(i + 1, i + 1);
-                            inputConnection.commitText(" ", 1);
-                            inputConnection.setSelection(i, i);
-                            delete();
-                            return;
-                        case "\n":
-                        case " ":
-                            inputConnection.deleteSurroundingText(beforeCursorText.length() - i - 1, 0);
-                            updateCurrentState();
-                            return;
-                    }
-                }
-                inputConnection.deleteSurroundingText(beforeCursorText.length(), 0);
-            }
-        }
-    }
-
-    private void updateTextInfo() {
-        ExtractedText extractedText = inputConnection.getExtractedText(new ExtractedTextRequest(), 0);
-        if (extractedText != null) {
-            currentText = extractedText.text;
-            beforeCursorText = inputConnection.getTextBeforeCursor(currentText.length(), 0);
-            afterCursorText = inputConnection.getTextAfterCursor(currentText.length(), 0);
-        }
-    }
-
-    public void updateCurrentState() {
-
-        // Align cursor to a valid position
-        updateTextInfo();
-        boolean adjust = afterCursorText.length() != 0;
-        if (adjust && "]_".contains(Character.toString(afterCursorText.charAt(0)))) {
-            adjust = false;
-        }
-        for (int i = beforeCursorText.length() - 1; i >= 0; i--) {
-            String currentString = Character.toString(beforeCursorText.charAt(i));
-            switch (currentString) {
-                case "\n":
-                case " ":
-                    setBracket(false);
-                    if (adjust) {
-                        inputConnection.setSelection(i + 1, i + 1);
-                    }
-                    return;
-                case "_":
-                case "]":
-                    setBracket(true);
-                    if (adjust) {
-                        inputConnection.setSelection(i, i);
-                    }
-                    return;
-                case "[":
-                    setBracket(true);
-                    if (adjust) {
-                        inputConnection.setSelection(i + 1, i + 1);
-                    }
-                    return;
-            }
-        }
-        if (adjust) {
-            inputConnection.setSelection(0, 0);
-        }
-    }
-
-    public void setBracket(boolean newInBrackets) {
-        inBrackets = newInBrackets;
-        String newBracket;
-        if (inBrackets) {
-            newBracket = "]";
-            prefix = "_";
-            suffix = "";
-        } else {
-            newBracket = "[";
-            prefix = "";
-            suffix = " ";
-        }
-        keyValues.put(R.id.bracket, "%" + newBracket);
-        ((Button) findViewById(R.id.bracket)).setText(newBracket);
-    }
-
-    public void setInputConnection(InputConnection ic) {
-        inputConnection = ic;
-    }
-
-    public void setEditorInfo(EditorInfo ei) {
-        editorInfo = ei;
-    }
-
-    private boolean doesShortcutExist(String shortcutToCheck) {
-        for (String shortcut : shortcuts) {
-            if (shortcutToCheck.equals(shortcut)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void write(String toWrite) {
-        inputConnection.commitText(toWrite, 1);
-    }
-
-    private void writeShortcut(String shortcut) {
-        write(prefix + getWord(shortcut) + suffix);
-    }
-
-    private String getWord(String shortcut) {
-        for (int i = 0; i < shortcuts.length; i++) {
-            if (shortcut.equals(shortcuts[i])) {
-                return words[i];
-            }
-        }
-        return "";
-    }
-
-    public void finishAction() {
-        if (!currentShortcut.isEmpty()) {
-            writeShortcut(finishShortcut(currentShortcut));
-            setLayout("");
-            currentShortcut = "";
-        }
-    }
-
-    private void setLayout(String layoutShortcut) {
-        String letters = "aeijklmnopstuw";
-        for (int i = 0; i < 14; i++) {
-            String potentialShortcut = layoutShortcut + letters.charAt(i);
-            Button key = keys[i];
-            if (doesShortcutExist(potentialShortcut)) {
-
-                // Key on last state
-                key.setText(getWord(potentialShortcut));
-                key.setBackgroundTintList(ColorStateList.valueOf(lastStateKeyColour));
-                key.setTextColor(lastStateKeyTextColour);
-
-            } else if (doesShortcutExist(finishShortcut(potentialShortcut))) {
-
-                key.setText(getWord(finishShortcut(potentialShortcut)));
-                if (potentialShortcut.length() > 1) {
-
-                    // Key is on intermediate state
-                    key.setBackgroundTintList(ColorStateList.valueOf(intermediateKeyColour));
-                    key.setTextColor(intermediateTextKeyColour);
-
-                } else {
-
-                    // Key is on base state
-                    key.setBackgroundTintList(ColorStateList.valueOf(letterKeyColour));
-                    key.setTextColor(letterKeyTextColour);
-                }
-            }
-        }
-    }
-
-    private String finishShortcut(String shortcutToFinish) {
-        if (doesShortcutExist(shortcutToFinish) || shortcutToFinish.isEmpty()) {
-            return shortcutToFinish;
-        } else {
-            return shortcutToFinish + shortcutToFinish.charAt(shortcutToFinish.length() - 1);
-        }
-    }
-
-    private boolean action(String startKey, String endKey) {
-        //Log.e("TAG", currentShortcut + ", " + startKey + ", " + endKey);
-        if (endKey == null) {
-            int endBracket;
-            switch (startKey) {
-                case "%[":
-                    finishAction();
-                    write("[] ");
-                    updateTextInfo();
-                    inputConnection.setSelection(beforeCursorText.length() - 2, beforeCursorText.length() - 2);
-                    setBracket(true);
-                    inputConnection.endBatchEdit();
-                    return true;
-                case "%]":
-                    finishAction();
-                    updateTextInfo();
-                    endBracket = beforeCursorText.length() - 1;
-                    while (true) {
-                        if (currentText.charAt(endBracket) == ']') {
-                            inputConnection.setSelection(endBracket + 2, endBracket + 2);
-                            setBracket(false);
-                            break;
-                        }
-                        endBracket++;
-                    }
-                    inputConnection.endBatchEdit();
-                    return true;
-                case "%delete":
-                    setLayout("");
-                    if (currentShortcut.isEmpty()) {
-                        delete();
-                    } else {
-                        currentShortcut = "";
-                    }
-                    if (unfinishedCompound) {
-                        delete();
-                        unfinishedCompound = false;
-                    }
-                    inputConnection.endBatchEdit();
-                    return true;
-                case "%enter":
-                    setLayout("");
-                    if (currentShortcut.isEmpty()) {
-                        //Log.e("TAG", Integer.toString(editorInfo.imeOptions));
-                        switch (editorInfo.imeOptions & (EditorInfo.IME_MASK_ACTION|EditorInfo.IME_FLAG_NO_ENTER_ACTION)) {
-                            case EditorInfo.IME_ACTION_GO:
-                                inputConnection.performEditorAction(EditorInfo.IME_ACTION_GO);
-                                break;
-                            case EditorInfo.IME_ACTION_NEXT:
-                                inputConnection.performEditorAction(EditorInfo.IME_ACTION_NEXT);
-                                break;
-                            case EditorInfo.IME_ACTION_SEARCH:
-                                inputConnection.performEditorAction(EditorInfo.IME_ACTION_SEARCH);
-                                break;
-                            case EditorInfo.IME_ACTION_SEND:
-                                inputConnection.performEditorAction(EditorInfo.IME_ACTION_SEND);
-                                break;
-                            default:
-                                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
-                                break;
-                        }
-                    } else {
-                        currentShortcut = "";
-                    }
-                    if (unfinishedCompound) {
-                        finishAction();
-                        unfinishedCompound = false;
-                    }
-                    inputConnection.endBatchEdit();
-                    return true;
-                default:
-                    if (startKey.charAt(0) == '%' && inBrackets) {
-                        finishAction();
-                        updateTextInfo();
-                        endBracket = beforeCursorText.length() - 1;
-                        while (true) {
-                            if (currentText.charAt(endBracket) == ']') {
-                                inputConnection.setSelection(endBracket + 2, endBracket + 2);
-                                setBracket(false);
-                                break;
-                            }
-                            endBracket++;
-                        }
-                    } else {
-
-                        // Click action
-                        setLayout("");
-                        if (doesShortcutExist(currentShortcut + startKey)) {
-
-                            // End of shortcut reached
-                            //Log.e("TAG", "finished: " + prefix);
-                            unfinishedCompound = false;
-                            writeShortcut(currentShortcut + startKey);
-                            currentShortcut = "";
-                            if (inBrackets) {
-                                prefix = "_";
-                            } else {
-                                prefix = "";
-                            }
-                            inputConnection.endBatchEdit();
-                            return true;
-
-                        } else if (doesShortcutExist(finishShortcut(currentShortcut + startKey))) {
-
-                            // Unfinished shortcut
-                            //Log.e("TAG", "not finished: " + prefix);
-                            setLayout(currentShortcut + startKey);
-                            currentShortcut += startKey;
-
-                        } else {
-
-                            // Changed to new shortcut
-                            //Log.e("TAG", "new: " + prefix);
-                            unfinishedCompound = false;
-                            finishAction();
-                            if (inBrackets) {
-                                prefix = "_";
-                            } else {
-                                prefix = "";
-                            }
-                            action(startKey, null);
-                            inputConnection.endBatchEdit();
-                            return true;
-                        }
-                    }
-            }
-        } else {
-
-            // Swipe action
-            if (startKey.equals("%.") && endKey.equals("%.")) {
-                action("%:", null);
-            } else if (startKey.equals("%?") && endKey.equals("%?")) {
-                action("%!", null);
-            } else if (startKey.charAt(0) == '%' || endKey.charAt(0) == '%') {
-                while (true) {
-                    //Log.e("TAG", "TEST");
-                    if (action(startKey, null)) {
-                        break;
-                    }
-                }
-                action(endKey, null);
-            } else {
-
-                // Compound word
-                if (unfinishedCompound) {
-                    unfinishedCompound = false;
-                    String tempCurrentShortcut;
-                    if (doesShortcutExist(finishShortcut(currentShortcut + startKey))) {
-                        tempCurrentShortcut = currentShortcut;
-                    } else {
-                        tempCurrentShortcut = "";
-                    }
-                    finishAction();
-                    if (inBrackets) {
-                        prefix = "_";
-                    } else {
-                        prefix = "";
-                    }
-                    currentShortcut = tempCurrentShortcut;
-                    action(startKey, endKey);
-                } else {
-                    unfinishedCompound = true;
-                    String tempSuffix = suffix;
-                    if (!doesShortcutExist(finishShortcut(currentShortcut + startKey))) {
-                        finishAction();
-                    }
-                    suffix = "-";
-                    inputConnection.beginBatchEdit();
-                    writeShortcut(finishShortcut(currentShortcut + startKey));
-                    suffix = tempSuffix;
-                    prefix = "";
-                    currentShortcut = "";
-                    action(endKey, null);
-                }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean onLongClick(View v) {
-        if ("%[".equals(keyValues.get(v.getId()))) {
-            action("%[", "%]");
-        } else if ("%]".equals(keyValues.get(v.getId()))) {
-            action("%]", "%[");
-        } else {
-            action(keyValues.get(v.getId()), keyValues.get(v.getId()));
-        }
-        return true;
     }
 
     @Override
@@ -613,5 +236,486 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
         }
 
         return false;
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        action(keyValues.get(v.getId()), keyValues.get(v.getId()));
+        return true;
+    }
+
+    private void action(String startKey, String endKey) {
+        Log.e("TAG", currentShortcut + ", " + startKey + ", " + endKey);
+        if (endKey == null) {
+
+            // Single key sent
+            if (startKey.charAt(0) == '%') {
+
+                // Special key sent
+                if (!startKey.equals("%delete")) {
+                    finishAction("finish");
+                    if (inBrackets && !startKey.equals("%]") && !startKey.equals("%[")) {
+                        action("%]", null);
+                    }
+                }
+                if (getPreviousCharacter().equals("“") && !startKey.equals("%“") && !startKey.equals("%delete")) {
+                    moveCursorBackOne();
+                    updateCurrentState();
+                }
+                switch (startKey) {
+                    case "%]":
+
+                        // Move cursor to the next space (or the end of the input if none are found)
+                        int endBracketLocation = getEndBracketLocation();
+                        inputConnection.setSelection(endBracketLocation, endBracketLocation);
+
+                        // Place a closing bracket if it is missing
+                        if (currentText.charAt(endBracketLocation - 1) != ']') {
+                            write("]");
+                        }
+
+                        setBracket(false);
+                        break;
+                    case "%[":
+                        if (inBrackets) {
+                            action("%]", null);
+                        } else {
+                            writeShortcut("[%");
+
+                            // Move cursor inside brackets
+                            moveCursorBackOne();
+
+                            setBracket(true);
+                        }
+                        break;
+                    case "%“":
+                        if (quoteNestingLevel > 0) {
+                            write("”");
+                        } else {
+                            writeShortcut("“%");
+                        }
+                        break;
+                    case "%.":
+                    case "%?":
+                        write(Character.toString(startKey.charAt(1)));
+                        //action(startKey.charAt(1) + "%", null);
+                        break;
+                    case "%delete":
+                        if (currentShortcut.isEmpty()) {
+                            delete();
+                        } else {
+
+                            // Cancel current input in progress
+                            currentShortcut = "";
+                            compoundFirstWordShortcut = "";
+                            setLayout("");
+                        }
+                        break;
+                    case "%enter":
+                        enter();
+                        break;
+                    default:
+                        Log.e(null, "Shortcut: " + startKey + " is not a special key");
+                }
+
+            } else {
+
+                // Letter/word key sent
+                if (doesShortcutExist(currentShortcut + startKey)) {
+
+                    // Key is part of previous action and it is now finished
+                    writeShortcut(currentShortcut + startKey);
+                    currentShortcut = "";
+                    setLayout("");
+
+                } else if (doesShortcutExist(finishShortcut(currentShortcut + startKey))) {
+
+                    // Key is part of previous action but it is still unfinished
+                    currentShortcut += startKey;
+                    setLayout("");
+                    setLayout(currentShortcut);
+
+                } else {
+
+                    // Need to finish previous action
+                    finishAction("finish");
+                    if (doesShortcutExist(startKey)) {
+
+                        // Word key sent
+                        writeShortcut(startKey);
+
+                    } else {
+
+                        // Letter key sent
+                        currentShortcut = startKey;
+                        setLayout(currentShortcut);
+                    }
+                }
+            }
+        } else {
+
+            // Two keys sent
+            if (startKey.charAt(0) == '%' || endKey.charAt(0) == '%') {
+
+                // Two separate keys to be sent (at least one was a special key)
+                if (startKey.equals(endKey)) {
+
+                    // Long press actions for special keys
+                    finishAction("finish");
+                    switch (startKey) {
+                        case "%[":
+                        case "%“":
+                            action(startKey, null);
+                            break;
+                        case "%.":
+                            write(":");
+                            break;
+                        case "%?":
+                            write("!");
+                            break;
+                        case "%enter":
+                            inputMethodManager.showInputMethodPicker();
+                            break;
+                        default:
+                            Log.e(null, "Shortcut: " + startKey + " is not a special key");
+                    }
+                } else if (startKey.charAt(0) == '%') {
+
+                    // Special key followed by normal key
+                    action(startKey, null);
+                    action(endKey, null);
+
+                } else {
+
+                    // Normal key followed by special key
+                    action(startKey, null);
+                    finishAction("finish");
+                    action(endKey, null);
+                }
+            } else {
+
+                // A compound glyph to be sent (Both were letter/word keys)
+                finishAction(startKey);
+                compoundFirstWordShortcut = finishShortcut(currentShortcut + startKey);
+                currentShortcut = "";
+                action(endKey, null);
+            }
+        }
+    }
+
+    // Returns true if the cursor is at the start of an input, newline or quote
+    private boolean cursorAtStart() {
+        updateTextInfo();
+        if (beforeCursorText.length() == 0) {
+            return true;
+        } else {
+            String previousCharacter = getPreviousCharacter();
+            return  "\n“".contains(previousCharacter);
+        }
+    }
+
+    private void delete() {
+        updateTextInfo();// Not at the start of the input
+        for (int i = beforeCursorText.length() - 1; i >= 0; i--) {
+            String currentString = Character.toString(beforeCursorText.charAt(i));
+            switch (currentString) {
+                case "“":
+                    if (i < beforeCursorText.length() - 1) {
+                        inputConnection.deleteSurroundingText(beforeCursorText.length() - i - 1, 0);
+                        return;
+                    }
+                case " ":
+                case "_":
+                case "”":
+                case ".":
+                case ":":
+                case "?":
+                case "!":
+                case "\n":
+                    inputConnection.deleteSurroundingText(beforeCursorText.length() - i, 0);
+                    return;
+                case "]":
+
+                    // Move inside the brackets and delete from there
+                    inputConnection.setSelection(i, i);
+                    setBracket(true);
+                    delete();
+                    return;
+
+                case "[":
+
+                    // Delete everything from the opening bracket up to the closing bracket
+                    int endBracket = getEndBracketLocation();
+                    inputConnection.deleteSurroundingText(2, endBracket - beforeCursorText.length());
+                    setBracket(false);
+                    return;
+            }
+        }
+
+        // Start of the input was reached
+        inputConnection.deleteSurroundingText(beforeCursorText.length(), 0);
+    }
+
+    private boolean doesShortcutExist(String shortcutToCheck) {
+        for (String shortcut : shortcuts) {
+            if (shortcutToCheck.equals(shortcut)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void enter() {
+
+        // Send the correct IME action specified by the editor
+        switch (editorInfo.imeOptions & (EditorInfo.IME_MASK_ACTION | EditorInfo.IME_FLAG_NO_ENTER_ACTION)) {
+            case EditorInfo.IME_ACTION_GO:
+                inputConnection.performEditorAction(EditorInfo.IME_ACTION_GO);
+                break;
+            case EditorInfo.IME_ACTION_NEXT:
+                inputConnection.performEditorAction(EditorInfo.IME_ACTION_NEXT);
+                break;
+            case EditorInfo.IME_ACTION_SEARCH:
+                inputConnection.performEditorAction(EditorInfo.IME_ACTION_SEARCH);
+                break;
+            case EditorInfo.IME_ACTION_SEND:
+                inputConnection.performEditorAction(EditorInfo.IME_ACTION_SEND);
+                break;
+            default:
+                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
+                break;
+        }
+    }
+
+    /* nextKey allows the function to know whether or not to reset currentShortcut in the cases
+     * where a new compound glyph has been started.
+     */
+    public void finishAction(String nextKey) {
+        boolean validCombination = doesShortcutExist(finishShortcut(currentShortcut + nextKey));
+        if (!validCombination || !compoundFirstWordShortcut.isEmpty()) {
+            writeShortcut(finishShortcut(currentShortcut));
+            if (!validCombination) {
+                currentShortcut = "";
+            }
+            setLayout("");
+        }
+    }
+
+    // Returns a shortcut if it exists and returns the finished shortcut if it does not exist yet
+    private String finishShortcut(String shortcutToFinish) {
+        if (doesShortcutExist(shortcutToFinish) || shortcutToFinish.isEmpty()) {
+            return shortcutToFinish;
+        } else {
+            return shortcutToFinish + shortcutToFinish.charAt(shortcutToFinish.length() - 1);
+        }
+    }
+
+    private int getEndBracketLocation() {
+        updateTextInfo();
+        int endBracket = beforeCursorText.length() - 1;
+        while (true) {
+            if (currentText.charAt(endBracket) == ']' || endBracket == currentText.length() - 1) {
+
+                // A bracket was found or the end of the input was reached
+                return endBracket + 1;
+
+            }
+            endBracket++;
+        }
+    }
+
+    private String getNextCharacter() {
+        updateTextInfo();
+        boolean atEndOfInput = afterCursorText.length() == 0;
+        String charOnRight = "";
+        if (!atEndOfInput) {
+            charOnRight = Character.toString(afterCursorText.charAt(0));
+        }
+        return charOnRight;
+    }
+
+    private String getPreviousCharacter() {
+        updateTextInfo();
+        boolean atStartOfInput = beforeCursorText.length() == 0;
+        String charOnLeft = "";
+        if (!atStartOfInput) {
+            charOnLeft = Character.toString(beforeCursorText.charAt(beforeCursorText.length() - 1));
+        }
+        return charOnLeft;
+    }
+
+    private String getWord(String shortcut) {
+        for (int i = 0; i < shortcuts.length; i++) {
+            if (shortcut.equals(shortcuts[i])) {
+                return words[i];
+            }
+        }
+        return "";
+    }
+
+    private void moveCursorBackOne() {
+        updateTextInfo();
+        int backOne = beforeCursorText.length() - 1;
+        inputConnection.setSelection(backOne, backOne);
+    }
+
+    public void setBracket(boolean newInBrackets) {
+        inBrackets = newInBrackets;
+        if (inBrackets) {
+            ((Button) findViewById(R.id.bracket)).setText("]");
+        } else {
+            ((Button) findViewById(R.id.bracket)).setText("[");
+        }
+    }
+
+    public void setEditorInfo(EditorInfo ei) {
+        editorInfo = ei;
+    }
+
+    public void setIME(InputMethodManager imm) {
+        inputMethodManager = imm;
+    }
+
+    public void setInputConnection(InputConnection ic) {
+        inputConnection = ic;
+    }
+
+    private void setLayout(String layoutShortcut) {
+        String letters = "aeijklmnopstuw";
+        for (int i = 0; i < 14; i++) {
+            String potentialShortcut = layoutShortcut + letters.charAt(i);
+            Button key = keys[i];
+            if (doesShortcutExist(potentialShortcut)) {
+
+                // Key on last state
+                key.setText(getWord(potentialShortcut));
+                key.setBackgroundTintList(ColorStateList.valueOf(lastStateKeyColour));
+                key.setTextColor(lastStateKeyTextColour);
+
+            } else if (doesShortcutExist(finishShortcut(potentialShortcut))) {
+
+                key.setText(getWord(finishShortcut(potentialShortcut)));
+                if (potentialShortcut.length() > 1) {
+
+                    // Key is on intermediate state
+                    key.setBackgroundTintList(ColorStateList.valueOf(intermediateKeyColour));
+                    key.setTextColor(intermediateTextKeyColour);
+
+                } else {
+
+                    // Key is on base state
+                    key.setBackgroundTintList(ColorStateList.valueOf(letterKeyColour));
+                    key.setTextColor(letterKeyTextColour);
+                }
+            }
+        }
+    }
+
+    public void updateCurrentState() {
+
+        // Get the adjacent characters
+        String charOnRight = getNextCharacter();
+        String charOnLeft = getPreviousCharacter();
+
+        boolean adjust = true;
+        if ("]”.:?!\n".contains(charOnLeft) || " _]”.:?!\n".contains(charOnRight)) {
+
+            // Do not adjust cursor position
+            adjust = false;
+        }
+
+        int moveTo = 0;
+        int i;
+        label:
+        for (i = beforeCursorText.length() - 1; i >= 0; i--) {
+            String currentString = Character.toString(beforeCursorText.charAt(i));
+            switch (currentString) {
+                case "“":
+                    moveTo = i + 1;
+                    break;
+                case "\n":
+                    if (moveTo == 0) {
+                        moveTo = i + 1;
+                    }
+                    setBracket(false);
+                    break label;
+                case " ":
+                case "]":
+                    setBracket(false);
+                    break label;
+                case "_":
+                case "[":
+                    setBracket(true);
+                    break label;
+            }
+            if (i == 0) {
+                setBracket(false);
+                break;
+            }
+        }
+        if (adjust) {
+            if (moveTo == 0) {
+                moveTo = i;
+            }
+            inputConnection.setSelection(moveTo, moveTo);
+        }
+
+        // Ensure the correct quote is on the key
+        updateQuoteNestedLevel();
+        if (quoteNestingLevel > 0) {
+            ((Button) findViewById(R.id.quote)).setText("”");
+        } else {
+            ((Button) findViewById(R.id.quote)).setText("“");
+        }
+    }
+
+    private void updateQuoteNestedLevel() {
+        updateTextInfo();
+        quoteNestingLevel = 0;
+        for (int i = beforeCursorText.length() - 1; i >= 0; i--) {
+            if (beforeCursorText.charAt(i) == '“') {
+                quoteNestingLevel += 1;
+            } else if (beforeCursorText.charAt(i) == '”') {
+                quoteNestingLevel -= 1;
+            }
+        }
+    }
+
+    private void updateTextInfo() {
+        ExtractedText extractedText = inputConnection.getExtractedText(new ExtractedTextRequest(), 0);
+        if (extractedText != null) {
+            currentText = extractedText.text;
+            beforeCursorText = inputConnection.getTextBeforeCursor(currentText.length(), 0);
+            afterCursorText = inputConnection.getTextAfterCursor(currentText.length(), 0);
+        }
+    }
+
+    private void write(String toWrite) {
+        inputConnection.commitText(toWrite, 1);
+    }
+
+    private void writeShortcut(String shortcut) {
+
+        // Do not write anything if the shortcut is empty
+        if (shortcut.isEmpty()) {
+            return;
+        }
+
+        // Decide the correct word spacer to put before the word
+        String wordSpacer = " ";
+        if (cursorAtStart()) {
+            wordSpacer = "";
+        } else if (inBrackets) {
+            wordSpacer = "_";
+        }
+
+        // Prepare first part of a compound glyph if it exists
+        String compoundFirstWord = "";
+        if (!compoundFirstWordShortcut.isEmpty()) {
+            compoundFirstWord = getWord(compoundFirstWordShortcut) + "-";
+            compoundFirstWordShortcut = "";
+        }
+
+        write(wordSpacer + compoundFirstWord + getWord(shortcut));
     }
 }

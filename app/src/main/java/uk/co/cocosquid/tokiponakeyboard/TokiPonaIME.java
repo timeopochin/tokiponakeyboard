@@ -5,6 +5,7 @@ import android.inputmethodservice.InputMethodService;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.InputMethodManager;
 
 public class TokiPonaIME extends InputMethodService {
 
@@ -21,7 +22,7 @@ public class TokiPonaIME extends InputMethodService {
     @Override
     public void onWindowHidden() {
         super.onWindowHidden();
-        keyboard.finishAction();
+        keyboard.finishAction("finish");
         keyboard.setBracket(false);
     }
 
@@ -32,6 +33,7 @@ public class TokiPonaIME extends InputMethodService {
         keyboard = keyboardWrapper.findViewById(R.id.keyboard);
         keyboard.setInputConnection(ic);
         keyboard.setEditorInfo(info);
+        keyboard.setIME((InputMethodManager) getApplicationContext().getSystemService(INPUT_METHOD_SERVICE));
         keyboard.updateCurrentState();
     }
 
