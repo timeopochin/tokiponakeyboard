@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
@@ -120,8 +121,38 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
         keys[23] = findViewById(R.id.quote);
         keys[24] = findViewById(R.id.dot);
         keys[25] = findViewById(R.id.question);
-        keys[26] = findViewById(R.id.delete);
-        keys[27] = findViewById(R.id.enter);
+        keys[26] = findViewById(R.id.enter);
+        keys[27] = findViewById(R.id.delete);
+
+        // Hold delete key for continuous delete
+        keys[27].setOnTouchListener(new View.OnTouchListener() {
+
+            private Handler mHandler;
+
+            @Override public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        if (mHandler != null) return true;
+                        mHandler = new Handler();
+                        mHandler.postDelayed(mAction, 200);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        if (mHandler == null) return true;
+                        mHandler.removeCallbacks(mAction);
+                        mHandler = null;
+                        break;
+                }
+                return false;
+            }
+
+            Runnable mAction = new Runnable() {
+                @Override public void run() {
+                    delete();
+                    mHandler.postDelayed(this, 50);
+                }
+            };
+
+        });
 
         // Set colours
         setColours();
