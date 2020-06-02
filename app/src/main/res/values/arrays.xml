@@ -3,10 +3,12 @@
     <string-array name="shortcuts">
         <item>ak</item>		<!-- akesi -->
         <item>al</item>		<!-- alasa -->
+        <item>ae</item>		<!-- ale -->
         <item>aa</item>		<!-- ali -->
         <item>an</item>		<!-- anpa -->
         <item>at</item>		<!-- ante -->
         <item>au</item>		<!-- anu -->
+        <item>ap</item>		<!-- apeja -->
         <item>aw</item>		<!-- awen -->
         <item>ee</item>		<!-- en -->
         <item>es</item>		<!-- esun -->
@@ -24,7 +26,10 @@
         <item>ks</item>		<!-- kasi -->
         <item>ke</item>		<!-- ken -->
         <item>kp</item>		<!-- kepeken -->
-        <item>ki</item>		<!-- kili -->
+        <item>kj</item>		<!-- kijetesantakalu -->
+        <item>kii</item>	<!-- kili -->
+        <item>kin</item>	<!-- kin -->
+        <item>kip</item>	<!-- kipisi -->
         <item>kw</item>		<!-- kiwen -->
         <item>ko</item>		<!-- ko -->
         <item>kn</item>		<!-- kon -->
@@ -35,7 +40,8 @@
         <item>la</item>		<!-- lape -->
         <item>ls</item>		<!-- laso -->
         <item>lw</item>		<!-- lawa -->
-        <item>le</item>		<!-- len -->
+        <item>lek</item>	<!-- leko -->
+        <item>lee</item>	<!-- len -->
         <item>lt</item>		<!-- lete -->
         <item>lii</item>	<!-- lili -->
         <item>lin</item>	<!-- linja -->
@@ -52,11 +58,13 @@
         <item>mj</item>		<!-- mije -->
         <item>mk</item>		<!-- moku -->
         <item>ml</item>		<!-- moli -->
-        <item>mo</item>		<!-- monsi -->
+        <item>moo</item>	<!-- monsi -->
+        <item>mon</item>	<!-- monsuta -->
         <item>mu</item>		<!-- mu -->
         <item>mn</item>		<!-- mun -->
         <item>ms</item>		<!-- musi -->
         <item>mt</item>		<!-- mute -->
+        <item>nm</item>		<!-- namako -->
         <item>na</item>		<!-- nanpa -->
         <item>ns</item>		<!-- nasa -->
         <item>ni</item>		<!-- nasin -->
@@ -64,10 +72,12 @@
         <item>nn</item>		<!-- nimi -->
         <item>no</item>		<!-- noka -->
         <item>oo</item>		<!-- o -->
+        <item>ok</item>		<!-- oko -->
         <item>ol</item>		<!-- olin -->
         <item>on</item>		<!-- ona -->
         <item>op</item>		<!-- open -->
         <item>pk</item>		<!-- pakala -->
+        <item>pe</item>		<!-- pake -->
         <item>pl</item>		<!-- pali -->
         <item>ps</item>		<!-- palisa -->
         <item>pa</item>		<!-- pan -->
@@ -103,6 +113,7 @@
         <item>te</item>		<!-- telo -->
         <item>tn</item>		<!-- tenpo -->
         <item>to</item>		<!-- tomo -->
+        <item>ti</item>		<!-- tonsi -->
         <item>tu</item>		<!-- tu -->
         <item>un</item>		<!-- unpa -->
         <item>ut</item>		<!-- uta -->
@@ -111,6 +122,7 @@
         <item>wn</item>		<!-- wan -->
         <item>ws</item>		<!-- waso -->
         <item>wa</item>		<!-- wawa -->
+        <item>we</item>		<!-- weka -->
         <item>ww</item>		<!-- wile -->
 
         <item>a%</item>
@@ -130,14 +142,16 @@
         <item>:%</item>
         <item>!%</item>
     </string-array>
-    
+
     <string-array name="words">
         <item>akesi</item>
         <item>alasa</item>
+        <item>ale</item>
         <item>ali</item>
         <item>anpa</item>
         <item>ante</item>
         <item>anu</item>
+        <item>apeja</item>
         <item>awen</item>
         <item>en</item>
         <item>esun</item>
@@ -155,7 +169,10 @@
         <item>kasi</item>
         <item>ken</item>
         <item>kepeken</item>
+        <item>kijetesantakalu</item>
         <item>kili</item>
+        <item>kin</item>
+        <item>kipisi</item>
         <item>kiwen</item>
         <item>ko</item>
         <item>kon</item>
@@ -166,6 +183,7 @@
         <item>lape</item>
         <item>laso</item>
         <item>lawa</item>
+        <item>leko</item>
         <item>len</item>
         <item>lete</item>
         <item>lili</item>
@@ -184,10 +202,12 @@
         <item>moku</item>
         <item>moli</item>
         <item>monsi</item>
+        <item>monsuta</item>
         <item>mu</item>
         <item>mun</item>
         <item>musi</item>
         <item>mute</item>
+        <item>namako</item>
         <item>nanpa</item>
         <item>nasa</item>
         <item>nasin</item>
@@ -195,10 +215,12 @@
         <item>nimi</item>
         <item>noka</item>
         <item>o</item>
+        <item>oko</item>
         <item>olin</item>
         <item>ona</item>
         <item>open</item>
         <item>pakala</item>
+        <item>pake</item>
         <item>pali</item>
         <item>palisa</item>
         <item>pan</item>
@@ -234,6 +256,7 @@
         <item>telo</item>
         <item>tenpo</item>
         <item>tomo</item>
+        <item>tonsi</item>
         <item>tu</item>
         <item>unpa</item>
         <item>uta</item>
@@ -242,6 +265,7 @@
         <item>wan</item>
         <item>waso</item>
         <item>wawa</item>
+        <item>weka</item>
         <item>wile</item>
 
         <item>a</item>
