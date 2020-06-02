@@ -31,6 +31,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
     private int previousKey;
     private int currentKey;
     private int startKey;
+    private boolean actionComplete = false;
 
     // Arrays
     private SparseArray<String> keyValues = new SparseArray<>();
@@ -224,12 +225,19 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
 
         if (found) {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                actionComplete = false;
                 startKey = currentKey;
             } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                setLayout("");
+                if (actionComplete && currentKey != startKey) {
+                    delete();
+                    setLayout("");
+                } else if (!actionComplete) {
+                    setLayout("");
+                }
             } else if (event.getAction() == MotionEvent.ACTION_UP && currentKey != startKey) {
 
                 // Swipe complete
+                actionComplete = true;
                 keys[currentKey].setPressed(false);
                 action(keyValues.get(keys[startKey].getId()), keyValues.get(keys[currentKey].getId()));
                 return true;
@@ -242,6 +250,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
     @Override
     public boolean onLongClick(View v) {
         action(keyValues.get(v.getId()), keyValues.get(v.getId()));
+        actionComplete = true;
         return true;
     }
 
@@ -307,15 +316,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
                         //action(startKey.charAt(1) + "%", null);
                         break;
                     case "%delete":
-                        if (currentShortcut.isEmpty()) {
-                            delete();
-                        } else {
-
-                            // Cancel current input in progress
-                            currentShortcut = "";
-                            compoundFirstWordShortcut = "";
-                            setLayout("");
-                        }
+                        delete();
                         break;
                     case "%enter":
                         enter();
@@ -428,64 +429,74 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
             return true;
         } else {
             String previousCharacter = getPreviousCharacter();
-            return  "\n“".contains(previousCharacter);
+            return "\n“".contains(previousCharacter);
         }
     }
 
     private void delete() {
-        updateTextInfo();
-        label:
-        for (int i = beforeCursorText.length() - 1; i >= 0; i--) {
-            String currentString = Character.toString(beforeCursorText.charAt(i));
-            switch (currentString) {
-                case "“":
-                    if (i == beforeCursorText.length() - 1) {
-                        inputConnection.deleteSurroundingText(1, 0);
-                    } else {
-                        inputConnection.deleteSurroundingText(beforeCursorText.length() - i - 1, 0);
-                    }
-                    break label;
-                case " ":
-                case "_":
-                case "”":
-                case ".":
-                case ":":
-                case "?":
-                case "!":
-                case "\n":
-                    inputConnection.deleteSurroundingText(beforeCursorText.length() - i, 0);
-                    break label;
-                case "]":
+        if (currentShortcut.isEmpty()) {
 
-                    // Move inside the brackets and delete from there
-                    inputConnection.setSelection(i, i);
-                    setBracket(true);
-                    delete();
-                    break label;
+            // Delete some text
+            updateTextInfo();
+            label:
+            for (int i = beforeCursorText.length() - 1; i >= 0; i--) {
+                String currentString = Character.toString(beforeCursorText.charAt(i));
+                switch (currentString) {
+                    case "“":
+                        if (i == beforeCursorText.length() - 1) {
+                            inputConnection.deleteSurroundingText(1, 0);
+                        } else {
+                            inputConnection.deleteSurroundingText(beforeCursorText.length() - i - 1, 0);
+                        }
+                        break label;
+                    case " ":
+                    case "_":
+                    case "”":
+                    case ".":
+                    case ":":
+                    case "?":
+                    case "!":
+                    case "\n":
+                        inputConnection.deleteSurroundingText(beforeCursorText.length() - i, 0);
+                        break label;
+                    case "]":
 
-                case "[":
+                        // Move inside the brackets and delete from there
+                        inputConnection.setSelection(i, i);
+                        setBracket(true);
+                        delete();
+                        break label;
 
-                    // Delete everything from the opening bracket up to the closing bracket
-                    int endBracket = getEndBracketLocation();
-                    inputConnection.deleteSurroundingText(1, endBracket - beforeCursorText.length());
-                    //if (getNextCharacter().equals(" ")) {
-                    //    inputConnection.deleteSurroundingText(0, 1);
-                    //}
-                    setBracket(false);
-                    break label;
+                    case "[":
+
+                        // Delete everything from the opening bracket up to the closing bracket
+                        int endBracket = getEndBracketLocation();
+                        inputConnection.deleteSurroundingText(1, endBracket - beforeCursorText.length());
+                        //if (getNextCharacter().equals(" ")) {
+                        //    inputConnection.deleteSurroundingText(0, 1);
+                        //}
+                        setBracket(false);
+                        break label;
                     //return;
-            }
-            if (i == 0) {
+                }
+                if (i == 0) {
 
-                // Start of the input was reached
-                inputConnection.deleteSurroundingText(beforeCursorText.length(), 0);
+                    // Start of the input was reached
+                    inputConnection.deleteSurroundingText(beforeCursorText.length(), 0);
+                }
             }
-        }
 
-        if ("% |“ ".contains(getAdjacentCharacters())) {
-            inputConnection.deleteSurroundingText(0, 1);
-        } else if (" %|  | ”| .| :| ?| !| \n".contains(getAdjacentCharacters())) {
-            inputConnection.deleteSurroundingText(1, 0);
+            if ("% |“ ".contains(getAdjacentCharacters())) {
+                inputConnection.deleteSurroundingText(0, 1);
+            } else if (" %|  | ”| .| :| ?| !| \n".contains(getAdjacentCharacters())) {
+                inputConnection.deleteSurroundingText(1, 0);
+            }
+        } else {
+
+            // Cancel current input in progress
+            currentShortcut = "";
+            compoundFirstWordShortcut = "";
+            setLayout("");
         }
     }
 
