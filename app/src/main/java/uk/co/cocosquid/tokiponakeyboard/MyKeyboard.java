@@ -51,21 +51,21 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
     private CharSequence afterCursorText;
 
     // Colours
-    private int letterKeyColour = 0xFF565956;
-    private int commonWordKeyColour = 0xFF454745;
-    private int specialKeyColour = 0xFF353634;
+    private int letterKeyColour;
+    private int commonWordKeyColour;
+    private int specialKeyColour;
 
-    private int letterKeyTextColour = 0xFFE8EDDF;
-    private int commonWordKeyTextColour = 0xFF8C8F8C;
-    private int specialKeyTextColour = 0xFF818481;
+    private int letterKeyTextColour;
+    private int commonWordKeyTextColour;
+    private int specialKeyTextColour;
 
-    private int lastStateKeyColour = 0xFFEFDC9E;
-    private int intermediateKeyColour = 0xFFF5CB5C;
+    private int lastStateKeyColour;
+    private int intermediateKeyColour;
 
-    private int lastStateKeyTextColour = 0xFF242423;
-    private int intermediateTextKeyColour = 0xFF242423;
+    private int lastStateKeyTextColour;
+    private int intermediateTextKeyColour;
 
-    private int backgroundColour = 0xFF242423;
+    private int backgroundColour;
 
     private Button[] keys = new Button[28];
 
@@ -117,6 +117,9 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
         keys[25] = findViewById(R.id.question);
         keys[26] = findViewById(R.id.delete);
         keys[27] = findViewById(R.id.enter);
+
+        // Set colours
+        setColours();
 
         // Set key listeners
         for (int i = 0; i < keys.length; i++) {
@@ -229,7 +232,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
                 startKey = currentKey;
             } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
                 if (actionComplete && currentKey != startKey) {
-                    delete();
+                    //currentShortcut = "";
                     setLayout("");
                 } else if (!actionComplete) {
                     setLayout("");
@@ -237,9 +240,14 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
             } else if (event.getAction() == MotionEvent.ACTION_UP && currentKey != startKey) {
 
                 // Swipe complete
-                actionComplete = true;
+                if (actionComplete) {
+                    currentShortcut = "";
+                    action(keyValues.get(keys[currentKey].getId()), null);
+                } else {
+                    actionComplete = true;
+                    action(keyValues.get(keys[startKey].getId()), keyValues.get(keys[currentKey].getId()));
+                }
                 keys[currentKey].setPressed(false);
-                action(keyValues.get(keys[startKey].getId()), keyValues.get(keys[currentKey].getId()));
                 return true;
             }
         }
@@ -623,6 +631,26 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
         } else {
             ((Button) findViewById(R.id.bracket)).setText("[");
         }
+    }
+
+    public void setColours() {
+
+        // Set colours
+        letterKeyColour = 0xFFbfd5ff;
+        commonWordKeyColour = 0xFF7fffd4;
+        specialKeyColour = 0xFF6f95df;
+
+        letterKeyTextColour = 0xFFffffff;
+        commonWordKeyTextColour = 0xFF00947f;
+        specialKeyTextColour = 0xFFffffff;
+
+        lastStateKeyColour = 0xFF7fffd4;
+        intermediateKeyColour = 0xFF00947f;
+
+        lastStateKeyTextColour = 0xFF00947f;
+        intermediateTextKeyColour = 0xFF7fffd4;
+
+        backgroundColour = 0xFF7faaff;
     }
 
     public void setEditorInfo(EditorInfo ei) {

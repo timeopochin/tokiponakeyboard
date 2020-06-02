@@ -18,4 +18,20 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        app:key="appearance_category"
+        app:title="Appearance">
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="behaviour_category"
+        app:title="Behaviour">
+«
+        <SwitchPreferenceCompat
+            app:key="emoji_mode"
+            app:title="Enable sitelen Emoji mode" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
