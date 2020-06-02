@@ -246,7 +246,6 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
     }
 
     private void action(String startKey, String endKey) {
-        Log.e("TAG", currentShortcut + ", " + startKey + ", " + endKey);
         if (endKey == null) {
 
             // Single key sent
