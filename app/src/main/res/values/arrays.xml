@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string-array name="shortcuts">
         <item>ak</item>		<!-- akesi -->
         <item>al</item>		<!-- alasa -->
@@ -72,7 +72,7 @@
         <item>nn</item>		<!-- nimi -->
         <item>no</item>		<!-- noka -->
         <item>oo</item>		<!-- o -->
-        <item>ok</item>		<!-- oko -->
+        <item tools:ignore="Typos">ok</item>		<!-- oko -->
         <item>ol</item>		<!-- olin -->
         <item>on</item>		<!-- ona -->
         <item>op</item>		<!-- open -->
@@ -284,5 +284,18 @@
 
         <item>:</item>
         <item>!</item>
+    </string-array>
+
+    <string-array name="unofficial_words">
+        <item>ale</item>
+        <item>apeja</item>
+        <item>kijetesantakalu</item>
+        <item>kin</item>
+        <item>kipisi</item>
+        <item>monsuta</item>
+        <item>namako</item>
+        <item>oko</item>
+        <item>pake</item>
+        <item>tonsi</item>
     </string-array>
 </resources>

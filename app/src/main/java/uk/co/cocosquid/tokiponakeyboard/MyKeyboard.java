@@ -37,6 +37,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
     private SparseArray<String> keyValues = new SparseArray<>();
     private String[] shortcuts;
     private String[] words;
+    private String[] unofficialWords;
 
     // Word construction
     private boolean inBrackets = false;
@@ -61,9 +62,13 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
 
     private int lastStateKeyColour;
     private int intermediateKeyColour;
+    private int lastStateUnofficialKeyColour;
+    private int intermediateUnofficialKeyColour;
 
     private int lastStateKeyTextColour;
     private int intermediateTextKeyColour;
+    private int lastStateUnofficialKeyTextColour;
+    private int intermediateTextUnofficialKeyColour;
 
     private int backgroundColour;
 
@@ -189,6 +194,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
         Resources res = getResources();
         shortcuts = res.getStringArray(R.array.shortcuts);
         words = res.getStringArray(R.array.words);
+        unofficialWords = res.getStringArray(R.array.unofficial_words);
     }
 
     @Override
@@ -618,6 +624,15 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
         return "";
     }
 
+    private boolean isUnofficial(String word) {
+        for (String unofficialWord: unofficialWords) {
+            if (unofficialWord.equals(word)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void moveCursorBackOne() {
         updateTextInfo();
         int backOne = beforeCursorText.length() - 1;
@@ -646,9 +661,13 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
 
         lastStateKeyColour = 0xFF7fffd4;
         intermediateKeyColour = 0xFF00947f;
+        lastStateUnofficialKeyColour = 0xFFff947f;
+        intermediateUnofficialKeyColour = 0xFFff4f3f;
 
         lastStateKeyTextColour = 0xFF00947f;
         intermediateTextKeyColour = 0xFF7fffd4;
+        lastStateUnofficialKeyTextColour = 0xFFff4f3f;
+        intermediateTextUnofficialKeyColour = 0xFFff947f;
 
         backgroundColour = 0xFF7faaff;
     }
@@ -670,25 +689,41 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
         for (int i = 0; i < 14; i++) {
             String potentialShortcut = layoutShortcut + letters.charAt(i);
             Button key = keys[i];
+            String keyText;
             if (doesShortcutExist(potentialShortcut)) {
 
                 // Key on last state
-                key.setText(getWord(potentialShortcut));
-                key.setBackgroundTintList(ColorStateList.valueOf(lastStateKeyColour));
-                key.setTextColor(lastStateKeyTextColour);
+                keyText = getWord(potentialShortcut);
+                key.setText(keyText);
+
+                // Set the colours
+                if (isUnofficial(keyText)) {
+                    key.setBackgroundTintList(ColorStateList.valueOf(lastStateUnofficialKeyColour));
+                    key.setTextColor(lastStateUnofficialKeyTextColour);
+                } else {
+                    key.setBackgroundTintList(ColorStateList.valueOf(lastStateKeyColour));
+                    key.setTextColor(lastStateKeyTextColour);
+                }
 
             } else if (doesShortcutExist(finishShortcut(potentialShortcut))) {
 
-                key.setText(getWord(finishShortcut(potentialShortcut)));
+                keyText = getWord(finishShortcut(potentialShortcut));
+                key.setText(keyText);
                 if (potentialShortcut.length() > 1) {
 
                     // Key is on intermediate state
-                    key.setBackgroundTintList(ColorStateList.valueOf(intermediateKeyColour));
-                    key.setTextColor(intermediateTextKeyColour);
-
+                    // Set the colours
+                    if (isUnofficial(keyText)) {
+                        key.setBackgroundTintList(ColorStateList.valueOf(intermediateUnofficialKeyColour));
+                        key.setTextColor(intermediateTextUnofficialKeyColour);
+                    } else {
+                        key.setBackgroundTintList(ColorStateList.valueOf(intermediateKeyColour));
+                        key.setTextColor(intermediateTextKeyColour);
+                    }
                 } else {
 
                     // Key is on base state
+                    // Set the colours
                     key.setBackgroundTintList(ColorStateList.valueOf(letterKeyColour));
                     key.setTextColor(letterKeyTextColour);
                 }
