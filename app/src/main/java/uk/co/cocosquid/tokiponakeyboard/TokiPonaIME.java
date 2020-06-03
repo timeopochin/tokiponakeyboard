@@ -19,17 +19,11 @@ public class TokiPonaIME extends InputMethodService {
     }
 
     @Override
-    public void onInitializeInterface() {
-        if (keyboard != null) {
-            keyboard.onPreferenceChange();
-        }
-    }
-
-    @Override
     public void onStartInputView (EditorInfo info, boolean restarting) {
         super.onStartInput(info, restarting);
-        keyboard.setEditorInfo(info);
 
+        keyboard.loadPreferences();
+        keyboard.setEditorInfo(info);
         InputConnection ic = getCurrentInputConnection();
         keyboard.setInputConnection(ic);
         keyboard.setIME((InputMethodManager) getApplicationContext().getSystemService(INPUT_METHOD_SERVICE));

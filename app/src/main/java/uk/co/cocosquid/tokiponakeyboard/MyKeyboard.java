@@ -409,6 +409,8 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
                     finishAction("finish");
                     switch (startKey) {
                         case "%[":
+                            write(",");
+                            break;
                         case "%“":
                             if (quoteNestingLevel > 0) {
                                 writeShortcut("“%");
@@ -652,7 +654,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
         return false;
     }
 
-    public void onPreferenceChange() {
+    public void loadPreferences() {
         setColours();
     }
 
