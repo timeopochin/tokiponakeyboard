@@ -652,6 +652,10 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
         return false;
     }
 
+    public void onPreferenceChange() {
+        setColours();
+    }
+
     private void moveCursorBackOne() {
         updateTextInfo();
         int backOne = beforeCursorText.length() - 1;
@@ -902,6 +906,8 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
             currentText = extractedText.text;
             beforeCursorText = inputConnection.getTextBeforeCursor(currentText.length(), 0);
             afterCursorText = inputConnection.getTextAfterCursor(currentText.length(), 0);
+        } else {
+            currentText = beforeCursorText = afterCursorText = "";
         }
     }
 

@@ -9,14 +9,36 @@ import android.view.inputmethod.InputMethodManager;
 
 public class TokiPonaIME extends InputMethodService {
 
-    private View keyboardWrapper;
-    MyKeyboard keyboard;
+    private MyKeyboard keyboard;
 
     @SuppressLint("InflateParams")
     @Override
     public View onCreateInputView() {
-        keyboardWrapper = getLayoutInflater().inflate(R.layout.keyboard_wrapper, null);
-        return keyboardWrapper;
+        keyboard = getLayoutInflater().inflate(R.layout.keyboard_wrapper, null).findViewById(R.id.keyboard);
+        return keyboard;
+    }
+
+    @Override
+    public void onInitializeInterface() {
+        if (keyboard != null) {
+            keyboard.onPreferenceChange();
+        }
+    }
+
+    @Override
+    public void onStartInputView (EditorInfo info, boolean restarting) {
+        super.onStartInput(info, restarting);
+        keyboard.setEditorInfo(info);
+
+        InputConnection ic = getCurrentInputConnection();
+        keyboard.setInputConnection(ic);
+        keyboard.setIME((InputMethodManager) getApplicationContext().getSystemService(INPUT_METHOD_SERVICE));
+        keyboard.updateCurrentState();
+    }
+
+    @Override
+    public void onUpdateSelection (int oldSelStart, int oldSelEnd, int newSelStart, int newSelEnd, int candidatesStart, int candidatesEnd) {
+        keyboard.updateCurrentState();
     }
 
     @Override
@@ -26,20 +48,4 @@ public class TokiPonaIME extends InputMethodService {
         keyboard.setBracket(false);
     }
 
-    @Override
-    public void onStartInputView (EditorInfo info, boolean restarting) {
-        super.onStartInputView(info, restarting);
-        InputConnection ic = getCurrentInputConnection();
-        keyboard = keyboardWrapper.findViewById(R.id.keyboard);
-        keyboard.setInputConnection(ic);
-        keyboard.setEditorInfo(info);
-        keyboard.setIME((InputMethodManager) getApplicationContext().getSystemService(INPUT_METHOD_SERVICE));
-        keyboard.updateCurrentState();
-        keyboard.setColours();
-    }
-
-    @Override
-    public void onUpdateSelection (int oldSelStart, int oldSelEnd, int newSelStart, int newSelEnd, int candidatesStart, int candidatesEnd) {
-        keyboard.updateCurrentState();
-    }
 }
