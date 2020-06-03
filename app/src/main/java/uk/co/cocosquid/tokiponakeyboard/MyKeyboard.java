@@ -333,7 +333,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
                     case "%“":
                         if (quoteNestingLevel > 0) {
                             write("”");
-                            if (!".:?!\n".contains(getNextCharacter()) && !getNextCharacter().isEmpty()) {
+                            if (!",.:?!\n".contains(getNextCharacter()) && !getNextCharacter().isEmpty()) {
                                 write(" ");
                             }
                         } else {
@@ -486,6 +486,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
                         break label;
                     case " ":
                     case "_":
+                    case ",":
                     case "”":
                     case ".":
                     case ":":
@@ -523,7 +524,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
 
             if ("% |“ ".contains(getAdjacentCharacters())) {
                 inputConnection.deleteSurroundingText(0, 1);
-            } else if (" %|  | ”| .| :| ?| !| \n".contains(getAdjacentCharacters())) {
+            } else if (" %|  | ,| ”| .| :| ?| !| \n".contains(getAdjacentCharacters())) {
                 inputConnection.deleteSurroundingText(1, 0);
             }
         } else {
@@ -837,7 +838,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
         String charOnLeft = getPreviousCharacter();
 
         boolean adjust = true;
-        if ("]”.:?!\n".contains(charOnLeft) || " _]”.:?!\n".contains(charOnRight)) {
+        if ("],”.:?!\n".contains(charOnLeft) || " _],”.:?!\n".contains(charOnRight)) {
 
             // Do not adjust cursor position
             adjust = false;
@@ -914,6 +915,9 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
     }
 
     private void write(String toWrite) {
+        if (inBrackets && ",:!".contains(toWrite)) {
+            action("%]", null);
+        }
         inputConnection.commitText(toWrite + suffix, 1);
     }
 
