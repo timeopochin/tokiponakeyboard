@@ -35,6 +35,7 @@ public class TokiPonaIME extends InputMethodService {
         keyboard.setEditorInfo(info);
         keyboard.setIME((InputMethodManager) getApplicationContext().getSystemService(INPUT_METHOD_SERVICE));
         keyboard.updateCurrentState();
+        keyboard.setColours();
     }
 
     @Override

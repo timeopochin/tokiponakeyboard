@@ -2,6 +2,7 @@ package uk.co.cocosquid.tokiponakeyboard;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -20,6 +21,8 @@ import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
+import androidx.preference.PreferenceManager;
 
 public class MyKeyboard extends LinearLayout implements View.OnLongClickListener, View.OnClickListener {
 
@@ -51,6 +54,9 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
     private CharSequence currentText;
     private CharSequence beforeCursorText;
     private CharSequence afterCursorText;
+
+    // Preferences
+    SharedPreferences sharedPreferences;
 
     // Colours
     private int letterKeyColour;
@@ -90,6 +96,10 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
 
     @SuppressLint("ClickableViewAccessibility")
     private void init(Context context) {
+
+        // Load shared preferences
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
         LayoutInflater.from(context).inflate(R.layout.keyboard, this, true);
 
         // Set the keys
@@ -129,8 +139,9 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
 
             private Handler mHandler;
 
-            @Override public boolean onTouch(View v, MotionEvent event) {
-                switch(event.getAction()) {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         if (mHandler != null) return true;
                         mHandler = new Handler();
@@ -146,7 +157,8 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
             }
 
             Runnable mAction = new Runnable() {
-                @Override public void run() {
+                @Override
+                public void run() {
                     delete();
                     mHandler.postDelayed(this, 50);
                 }
@@ -158,35 +170,11 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
         setColours();
 
         // Set key listeners
-        for (int i = 0; i < keys.length; i++) {
-            Button key = keys[i];
+        for (Button key : keys) {
             key.setOnClickListener(this);
             key.setOnLongClickListener(this);
             key.setTextSize(18);
-
-            // Set base colours
-            if (i < 14) {
-
-                // Letter keys
-                key.setBackgroundTintList(ColorStateList.valueOf(letterKeyColour));
-                key.setTextColor(letterKeyTextColour);
-
-            } else if (i < 22) {
-
-                // Common word keys
-                key.setBackgroundTintList(ColorStateList.valueOf(commonWordKeyColour));
-                key.setTextColor(commonWordKeyTextColour);
-
-            } else {
-
-                // Special keys
-                key.setBackgroundTintList(ColorStateList.valueOf(specialKeyColour));
-                key.setTextColor(specialKeyTextColour);
-            }
         }
-
-        // Set background colour
-        findViewById(R.id.keyboard).setBackgroundColor(backgroundColour);
 
         // Set the button strings
         keyValues.put(R.id.ali, "a");
@@ -656,7 +644,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
     }
 
     private boolean isUnofficial(String word) {
-        for (String unofficialWord: unofficialWords) {
+        for (String unofficialWord : unofficialWords) {
             if (unofficialWord.equals(word)) {
                 return true;
             }
@@ -680,27 +668,101 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
     }
 
     public void setColours() {
+        switch (sharedPreferences.getString("themes", "default")) {
+            case "default":
 
-        // Set colours
-        letterKeyColour = 0xFFbfd5ff;
-        commonWordKeyColour = 0xFF7fffd4;
-        specialKeyColour = 0xFF6f95df;
+                // Set colours
+                letterKeyColour = 0xFFbfd5ff;
+                commonWordKeyColour = 0xFF7fffd4;
+                specialKeyColour = 0xFF6f95df;
 
-        letterKeyTextColour = 0xFFffffff;
-        commonWordKeyTextColour = 0xFF00947f;
-        specialKeyTextColour = 0xFFffffff;
+                letterKeyTextColour = 0xFFffffff;
+                commonWordKeyTextColour = 0xFF00947f;
+                specialKeyTextColour = 0xFFffffff;
 
-        lastStateKeyColour = 0xFF7fffd4;
-        intermediateKeyColour = 0xFF00947f;
-        lastStateUnofficialKeyColour = 0xFFff947f;
-        intermediateUnofficialKeyColour = 0xFFff4f3f;
+                lastStateKeyColour = 0xFF7fffd4;
+                intermediateKeyColour = 0xFF00947f;
+                lastStateUnofficialKeyColour = 0xFFff947f;
+                intermediateUnofficialKeyColour = 0xFFff4f3f;
 
-        lastStateKeyTextColour = 0xFF00947f;
-        intermediateTextKeyColour = 0xFF7fffd4;
-        lastStateUnofficialKeyTextColour = 0xFFff4f3f;
-        intermediateTextUnofficialKeyColour = 0xFFff947f;
+                lastStateKeyTextColour = 0xFF00947f;
+                intermediateTextKeyColour = 0xFF7fffd4;
+                lastStateUnofficialKeyTextColour = 0xFFff4f3f;
+                intermediateTextUnofficialKeyColour = 0xFFff947f;
 
-        backgroundColour = 0xFF7faaff;
+                backgroundColour = 0xFF7faaff;
+                break;
+            case "light":
+
+                // Set colours
+                letterKeyColour = 0xFFebebeb;
+                commonWordKeyColour = 0xFF7faaff;
+                specialKeyColour = 0xFFd6d6d6;
+
+                letterKeyTextColour = 0xFF000000;
+                commonWordKeyTextColour = 0xFF000000;
+                specialKeyTextColour = 0xFF000000;
+
+                lastStateKeyColour = 0xFF7faaff;
+                intermediateKeyColour = 0xFF2E40A4;
+                lastStateUnofficialKeyColour = 0xFFff3f80;
+                intermediateUnofficialKeyColour = 0xFFef2f70;
+
+                lastStateKeyTextColour = 0xFF000000;
+                intermediateTextKeyColour = 0xFF000000;
+                lastStateUnofficialKeyTextColour = 0xFF000000;
+                intermediateTextUnofficialKeyColour = 0xFF000000;
+
+                backgroundColour = 0xFFffffff;
+                break;
+            case "dark":
+
+                // Set colours
+                letterKeyColour = 0xFF424242;
+                commonWordKeyColour = 0xFF7faaff;
+                specialKeyColour = 0xFF212121;
+
+                letterKeyTextColour = 0xFFffffff;
+                commonWordKeyTextColour = 0xFFffffff;
+                specialKeyTextColour = 0xFFffffff;
+
+                lastStateKeyColour = 0xFF7faaff;
+                intermediateKeyColour = 0xFF2E40A4;
+                lastStateUnofficialKeyColour = 0xFFff3f80;
+                intermediateUnofficialKeyColour = 0xFFef2f70;
+
+                lastStateKeyTextColour = 0xFFffffff;
+                intermediateTextKeyColour = 0xFFffffff;
+                lastStateUnofficialKeyTextColour = 0xFFffffff;
+                intermediateTextUnofficialKeyColour = 0xFFffffff;
+
+                backgroundColour = 0xFF000000;
+                break;
+        }
+        for (int i = 0; i < keys.length; i++) {
+            // Set base colours
+            if (i < 14) {
+
+                // Letter keys
+                keys[i].setBackgroundTintList(ColorStateList.valueOf(letterKeyColour));
+                keys[i].setTextColor(letterKeyTextColour);
+
+            } else if (i < 22) {
+
+                // Common word keys
+                keys[i].setBackgroundTintList(ColorStateList.valueOf(commonWordKeyColour));
+                keys[i].setTextColor(commonWordKeyTextColour);
+
+            } else {
+
+                // Special keys
+                keys[i].setBackgroundTintList(ColorStateList.valueOf(specialKeyColour));
+                keys[i].setTextColor(specialKeyTextColour);
+            }
+        }
+
+        // Set background colour
+        findViewById(R.id.keyboard).setBackgroundColor(backgroundColour);
     }
 
     public void setEditorInfo(EditorInfo ei) {

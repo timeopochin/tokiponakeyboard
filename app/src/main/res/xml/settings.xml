@@ -22,8 +22,17 @@
         app:key="appearance_category"
         app:title="Appearance">
 
+        <ListPreference
+            app:key="themes"
+            app:title="Theme"
+            app:entries="@array/theme_names"
+            app:entryValues="@array/themes"
+            app:defaultValue="default"
+            app:useSimpleSummaryProvider="true" />
+
     </PreferenceCategory>
 
+    <!--
     <PreferenceCategory
         app:key="behaviour_category"
         app:title="Behaviour">
@@ -33,5 +42,6 @@
             app:title="Enable sitelen Emoji mode" />
 
     </PreferenceCategory>
+    -->
 
 </PreferenceScreen>
