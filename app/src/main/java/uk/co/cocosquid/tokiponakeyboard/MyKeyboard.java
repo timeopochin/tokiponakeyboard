@@ -695,41 +695,41 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
             case "light":
 
                 // Set colours
-                letterKeyColour = 0xFFebebeb;
+                letterKeyColour = 0xFFffffff;
                 commonWordKeyColour = 0xFF7faaff;
-                specialKeyColour = 0xFFd6d6d6;
+                specialKeyColour = 0xFFc0c0c0;
 
-                letterKeyTextColour = 0xFF000000;
-                commonWordKeyTextColour = 0xFF000000;
-                specialKeyTextColour = 0xFF000000;
+                letterKeyTextColour = 0xFF101010;
+                commonWordKeyTextColour = 0xFFffffff;
+                specialKeyTextColour = 0xFF101010;
 
                 lastStateKeyColour = 0xFF7faaff;
                 intermediateKeyColour = 0xFF2E40A4;
                 lastStateUnofficialKeyColour = 0xFFff3f80;
-                intermediateUnofficialKeyColour = 0xFFef2f70;
+                intermediateUnofficialKeyColour = 0xFFaf1767;
 
-                lastStateKeyTextColour = 0xFF000000;
-                intermediateTextKeyColour = 0xFF000000;
-                lastStateUnofficialKeyTextColour = 0xFF000000;
-                intermediateTextUnofficialKeyColour = 0xFF000000;
+                lastStateKeyTextColour = 0xFFffffff;
+                intermediateTextKeyColour = 0xFFffffff;
+                lastStateUnofficialKeyTextColour = 0xFFffffff;
+                intermediateTextUnofficialKeyColour = 0xFFffffff;
 
-                backgroundColour = 0xFFffffff;
+                backgroundColour = 0xFFe0e0e0;
                 break;
             case "dark":
 
                 // Set colours
-                letterKeyColour = 0xFF424242;
-                commonWordKeyColour = 0xFF7faaff;
-                specialKeyColour = 0xFF212121;
+                letterKeyColour = 0xFF202020;
+                commonWordKeyColour = 0xFF405580;
+                specialKeyColour = 0xFF101010;
 
-                letterKeyTextColour = 0xFFffffff;
+                letterKeyTextColour = 0xFFe0e0e0;
                 commonWordKeyTextColour = 0xFFffffff;
-                specialKeyTextColour = 0xFFffffff;
+                specialKeyTextColour = 0xFFe0e0e0;
 
-                lastStateKeyColour = 0xFF7faaff;
-                intermediateKeyColour = 0xFF2E40A4;
-                lastStateUnofficialKeyColour = 0xFFff3f80;
-                intermediateUnofficialKeyColour = 0xFFef2f70;
+                lastStateKeyColour = 0xFF405580;
+                intermediateKeyColour = 0xFF172052;
+                lastStateUnofficialKeyColour = 0xFF802040;
+                intermediateUnofficialKeyColour = 0xFF580C34;
 
                 lastStateKeyTextColour = 0xFFffffff;
                 intermediateTextKeyColour = 0xFFffffff;
