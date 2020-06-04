@@ -3,20 +3,22 @@
 
 
 #### Table of contents
-    [What is Toki Pona Keyboard?](#what-is-toki-pona-keyboard)
-    [How I made it](#how-i-made-it)
-    [The layout](#the-layout)
-        [Simple glyphs](#simple-glyphs)
-        [Compound glyphs](#compound-glyphs)
-        [Special behavior](#special-behavior)
-    [Installation](#installation)
-        [Download precompiled version](download-precompiled-version)
-        [Build from source](#build-from-source)
-    [Help improve this project](#help-improve-this-project)
-    [Support me](#support-me)
+
+ + [What is Toki Pona Keyboard?](#what-is-toki-pona-keyboard)
+ + [How I made it](#how-i-made-it)
+ + [The layout](#the-layout)
+   + [Simple glyphs](#simple-glyphs)
+   + [Compound glyphs](#compound-glyphs)
+   + [Special behavior](#special-behavior)
+ + [Installation](#installation)
+   + [Download precompiled version](download-precompiled-version)
+   + [Build from source](#build-from-source)
+ + [Help improve this project](#help-improve-this-project)
+ + [Support me](#support-me)
 
 
 <a name="what-is-toki-pona-keyboard"/>
+
 ## What is Toki Pona Keyboard?
 
 Toki Pona Keyboard is an android application that adds an input method specifically for writing in the language [toki pona](https://tokipona.org/) created by Sonja Lang. The keyboard uses the hieroglyphic writing system called [sitelen pona](http://tokipona.net/tp/janpije/hieroglyphs.php). This means that the users enter entire words rather than typing one letter at a time.
@@ -27,18 +29,21 @@ Toki Pona Keyboard is an android application that adds an input method specifica
 
 
 <a name="how-i-made-it"/>
+
 ## How I made it
 
 This keyboard was built using the [standard android libraries](https://developer.android.com/). It types plain text and therefore it can be used anywhere to type in toki pona. The keys themselves also contain simple text but are styled into hieroglyphics with the [linja pona 4.2]() font. This font is also active on some of the screenshots, but the way the words are rendered is completely dependent on the app that the text is on.
 
 
 <a name="the-layout"/>
+
 ## The layout
 
 The chosen words for each keys is heavily influenced by [this](https://gist.github.com/increpare/9aaf57056b857cb44a38d0ff0de9534b) data on word frequency in toki pona that was compiled together by [Stephen Lavelle](https://www.increpare.com/). He analyzed data from \#toki-pona-taso on the ma pona pi toki pona discord server.
 
 
 <a name="simple glyphs"/>
+
 ### Simple glyphs
 
 The keyboard is made up of three sections:
@@ -67,6 +72,7 @@ Basic rules of the layout:
 
 
 <a name="compound-glypths"/>
+
 ### Compound glyphs
 
 The linja pona 4.2 font uses OpenType features to dynamically compose compound glyphs. This means that you can create compound glyphs from any two words. To create a compound glyph you simply need to slide from one glyph to the next:
@@ -75,6 +81,7 @@ The linja pona 4.2 font uses OpenType features to dynamically compose compound g
 
 
 <a name="special-behavior"/>
+
 ### Special behavior
 
 Some keys have their own special behaviors:
@@ -85,8 +92,10 @@ Some keys have their own special behaviors:
 
 
 <a name="installation"/>
+
 ## Installation
 <a name="download-precompiled-version"/>
+
 ### Download precompiled version
 
 This app is in development and only in the Alpha Testing phases. You cannot search for this app on the Play Store yet but you can become an Alpha Tester to gain access to it here:
@@ -97,6 +106,7 @@ Alternatively, I also upload the APK for each version on the [releases](https://
 
 
 <a name="build-from-source"/>
+
 ### Build from source
 
 To build this project from source you need an up to date [Android Studio](https://developer.android.com/studio).
@@ -123,6 +133,7 @@ If you want to sign your APK you can learn more [here](https://developer.android
 
 
 <a name="help-improve-this-project"/>
+
 ## Help improve this project
 
 By becoming an Alpha Tester you will immediately start helping improve this project. Bring up any issues, bugs or suggestions [here](https://github.com/timeopochin/tokiponakeyboard/issues).
@@ -131,6 +142,7 @@ Also, feel free to suggest changes to the code if you have any experience in dev
 
 
 <a name="support-me"/>
+
 ## Support me
 
 Toki Pona Keyboard is completely free and open source under the [GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.txt), it was made out of love for the language and the desire for an elegant and efficient way to write it. However both time and money has gone into this project, namely paying the registration fee to get the app on the Play Store, so if you would like to donate to support this project's development, that would be hugely appreciated!
