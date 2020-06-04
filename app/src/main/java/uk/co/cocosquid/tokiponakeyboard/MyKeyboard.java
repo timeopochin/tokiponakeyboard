@@ -54,6 +54,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
     private CharSequence currentText;
     private CharSequence beforeCursorText;
     private CharSequence afterCursorText;
+    private boolean stopDelete = false;
 
     // Preferences
     SharedPreferences sharedPreferences;
@@ -141,17 +142,19 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        if (mHandler != null) return true;
-                        mHandler = new Handler();
-                        mHandler.postDelayed(mAction, 200);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        if (mHandler == null) return true;
-                        mHandler.removeCallbacks(mAction);
-                        mHandler = null;
-                        break;
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (mHandler != null) {
+                        return true;
+                    }
+                    stopDelete = false;
+                    mHandler = new Handler();
+                    mHandler.postDelayed(mAction, 200);
+                } else if (event.getAction() == MotionEvent.ACTION_UP || stopDelete) {
+                    if (mHandler == null) {
+                        return true;
+                    }
+                    mHandler.removeCallbacks(mAction);
+                    mHandler = null;
                 }
                 return false;
             }
@@ -160,7 +163,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
                 @Override
                 public void run() {
                     delete();
-                    mHandler.postDelayed(this, 50);
+                    mHandler.postDelayed(this, 30);
                 }
             };
 
@@ -256,9 +259,17 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
                 actionComplete = false;
                 startKey = currentKey;
             } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                /*
                 if (actionComplete && currentKey != startKey) {
                     //currentShortcut = "";
                     setLayout("");
+                } else if (!actionComplete) {
+                    setLayout("");
+                }
+                 */
+                if (currentKey != startKey) {
+                    setLayout("");
+                    stopDelete = true;
                 } else if (!actionComplete) {
                     setLayout("");
                 }

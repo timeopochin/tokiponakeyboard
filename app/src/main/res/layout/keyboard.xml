@@ -10,68 +10,75 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/li"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/li"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/mi"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/mi"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bracket"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/bracket"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ali"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/ali"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/en"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/en"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ike"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/ike"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/dot"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/dot"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
     </LinearLayout>
 
@@ -80,68 +87,75 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/e"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/e"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/toki"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/toki"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/quote"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/quote"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/jan"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/jan"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/kama"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/kama"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/la"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/la"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/question"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/question"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
     </LinearLayout>
 
@@ -150,68 +164,75 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ni"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/ni"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/pona"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/pona"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ma"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/ma"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/nimi"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/nimi"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/o"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/o"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/pi"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
-            android:text="@string/pi"
-            style="@style/ButtonStyle" />
-
-        <Button
             android:fontFamily="@font/linja_pona_4_2"
+            android:text="@string/pi"
+            android:textAllCaps="false" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/delete"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/delete"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
     </LinearLayout>
 
@@ -220,68 +241,75 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/a"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/a"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ala"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/ala"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/sina"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/sina"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/tawa"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/tawa"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/utala"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/utala"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
-        <Button
-            android:fontFamily="@font/linja_pona_4_2"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/wile"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
-            android:text="@string/wile"
-            style="@style/ButtonStyle" />
-
-        <Button
             android:fontFamily="@font/linja_pona_4_2"
+            android:text="@string/wile"
+            android:textAllCaps="false" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/enter"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".1428"
+            android:fontFamily="@font/linja_pona_4_2"
             android:text="@string/enter"
-            style="@style/ButtonStyle" />
+            android:textAllCaps="false" />
 
     </LinearLayout>
 

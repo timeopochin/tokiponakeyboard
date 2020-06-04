@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.inputmethod.InputMethodManager;
 
-import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
@@ -53,12 +52,12 @@ public class MySettingsFragment extends PreferenceFragmentCompat implements Pref
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        switch (preference.getKey()) {
-            case "themes":
-                break;
-            case "":
-                break;
-        }
+    //    switch (preference.getKey()) {
+    //        case "themes":
+    //            break;
+    //        case "":
+    //            break;
+    //    }
         return true;
     }
 }
