@@ -488,6 +488,7 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
             for (int i = beforeCursorText.length() - 1; i >= 0; i--) {
                 String currentString = Character.toString(beforeCursorText.charAt(i));
                 switch (currentString) {
+                    case "\n":
                     case "“":
                         if (i == beforeCursorText.length() - 1) {
                             inputConnection.deleteSurroundingText(1, 0);
@@ -503,7 +504,6 @@ public class MyKeyboard extends LinearLayout implements View.OnLongClickListener
                     case ":":
                     case "?":
                     case "!":
-                    case "\n":
                         inputConnection.deleteSurroundingText(beforeCursorText.length() - i, 0);
                         break label;
                     case "]":
