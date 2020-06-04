@@ -11,7 +11,7 @@
    + [Compound glyphs](#compound-glyphs)
    + [Special behavior](#special-behavior)
  + [Installation](#installation)
-   + [Download precompiled version](download-precompiled-version)
+   + [Download precompiled version](#download-precompiled-version)
    + [Build from source](#build-from-source)
  + [Help improve this project](#help-improve-this-project)
  + [Support me](#support-me)
