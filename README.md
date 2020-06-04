@@ -69,7 +69,7 @@ The linja pona 4.2 font uses OpenType features to dynamically compose compound g
 Some keys have their own special behaviors:
 
 + The **“** (open) key will automatically change to a **”** (close). For most applications this is desirable, but in the rare case you might have nested quotes, you can simply long press the **”** (close) to force a **“** (open) to be typed.
-+ Long pressing the **➤** key will open the "select input method" dialog, which allows you to quickly switch to a different keyboard such as Gboard.
++ Long pressing the **➤** key will open the _"select input method"_ dialog, which allows you to quickly switch to a different keyboard such as Gboard.
 + Long pressing a key essentially acts as a slide onto itself, this is useful in some rare cases. For example: typing _jan-jaki_ requires you to start your slide on _jan_ and to finish on _jan_ to change to the _j_ view where you can find _jaki_.
 
 
@@ -98,7 +98,9 @@ git clone https://github.com/timeopochin/tokiponakeyboard.git
 
 Open the project with android studio:
 
-![](other/images/open-project.png) ![](other/images/open-project-dialog.png)
+![](other/images/open-project.png) 
+
+![](other/images/open-project-dialog.png) 
 
 Wait for Gradle to finish syncing then go to _Build_ **>** _Build Bundle(s) / APK(s)_ **>** _Build APK(s)_
 
@@ -107,6 +109,14 @@ Wait for Gradle to finish syncing then go to _Build_ **>** _Build Bundle(s) / AP
 Done! You now have an APK in: _<path to cloned repository\>/tokiponakeyboard/app/build/outputs/apk/debug_
 
 If you want to sign your APK you can learn more [here](https://developer.android.com/studio/publish/app-signing).
+
+
+
+## Help improve this project
+
+By becoming an Alpha Tester you will immediately start helping improve this project. Bring up any issues, bugs or suggestions [here](https://github.com/timeopochin/tokiponakeyboard/issues).
+
+Also, feel free to suggest changes to the code if you have any experience in developing for android. This is my first ever app and I imagine I have lots to learn.
 
 
 
