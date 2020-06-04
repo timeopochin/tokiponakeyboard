@@ -99,7 +99,7 @@ Some keys have their own special behaviors:
 
 ### Download precompiled version
 
-This app is in development and only in the Alpha Testing phases. You cannot search for this app on the Play Store yet but you can become an Alpha Tester to gain access to it here:
+This app is in development and only in the Alpha Testing phases. You cannot search for this app on the Play Store yet but you can become an Alpha Tester to gain access to it by [joining the Alpha Testing group](https://groups.google.com/forum/#!forum/toki-pona-keyboard-alpha-testing/join) and then getting the app from here:
 
 <a href='https://play.google.com/apps/testing/uk.co.cocosquid.tokiponakeyboard'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height='80px'/></a>
 
