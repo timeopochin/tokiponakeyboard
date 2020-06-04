@@ -21,7 +21,7 @@
 
 ## What is Toki Pona Keyboard?
 
-Toki Pona Keyboard is an android application that adds an input method specifically for writing in the language [toki pona](https://tokipona.org/) created by Sonja Lang. The keyboard uses the hieroglyphic writing system called [sitelen pona](http://tokipona.net/tp/janpije/hieroglyphs.php). This means that the users enter entire words rather than typing one letter at a time.
+Toki Pona Keyboard is an android application that adds an input method specifically for writing in Sonja Lang's [toki pona](https://tokipona.org/) language. The keyboard uses the hieroglyphic writing system called [sitelen pona](http://tokipona.net/tp/janpije/hieroglyphs.php). This means that the users enter entire words rather than typing one letter at a time.
 
 
 
@@ -58,7 +58,7 @@ The keyboard is made up of three sections:
 
  ![](other/images/keyboard-intermediate-key.jpg)
 
-Here, you are presented with more word keys that will simply type the word as well as:
+Here, you are presented with more word keys that will simply type the word, as well as:
 
 ![](other/images/unofficial.jpg) Unofficial (non pu) words - which are essentially word keys.
 
@@ -94,6 +94,7 @@ Some keys have their own special behaviors:
 <a name="installation"/>
 
 ## Installation
+
 <a name="download-precompiled-version"/>
 
 ### Download precompiled version
