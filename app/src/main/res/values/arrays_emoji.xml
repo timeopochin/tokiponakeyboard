@@ -3,18 +3,18 @@
     <string-array name="shortcuts_emoji">
         <!-- 🦎-->    <item>ak</item>
         <!-- 🏹-->    <item>al</item>
-        <!-- ♾-->    <item>aa</item>
-        <!-- ⬇-->    <item>an</item>
+        <!-- ♾️-->    <item>aa</item>
+        <!-- ⬇️-->    <item>an</item>
         <!-- 🔀-->    <item>at</item>
-        <!-- ☯-->    <item>au</item>
+        <!-- ☯️-->    <item>au</item>
         <!-- 😢-->    <item>ap</item>
-        <!-- ⚓-->    <item>aw</item>
-        <!-- ➕-->    <item>ee</item>
+        <!-- ⚓️-->    <item>aw</item>
+        <!-- ➕️-->    <item>ee</item>
         <!-- 🛒-->    <item>es</item>
         <!-- 🐚-->    <item>ij</item>
         <!-- 👎-->    <item>ii</item>
-        <!-- ⚙-->    <item>il</item>
-        <!-- ⏺-->    <item>in</item>
+        <!-- ⚙️-->    <item>il</item>
+        <!-- ⏺️-->    <item>in</item>
         <!-- 💩-->    <item>ja</item>
         <!-- 👤-->    <item>jj</item>
         <!-- 💛-->    <item>je</item>
@@ -27,7 +27,7 @@
         <!-- 🔧-->    <item>kp</item>
         <!-- 🍎-->    <item>kii</item>
         <!-- ❕-->    <item>kin</item>
-        <!-- ✂-->    <item>kip</item>
+        <!-- ✂️-->    <item>kip</item>
         <!-- 💎-->    <item>kw</item>
         <!-- 🍦-->    <item>ko</item>
         <!-- 💨-->    <item>kn</item>
@@ -40,14 +40,14 @@
         <!-- 😶-->    <item>lw</item>
         <!-- 🧱-->    <item>lek</item>
         <!-- 👕-->    <item>lee</item>
-        <!-- ❄-->    <item>lt</item>
+        <!-- ❄️-->    <item>lt</item>
         <!-- 🐭-->    <item>lii</item>
-        <!-- 〰-->    <item>lin</item>
+        <!-- 〰️-->    <item>lin</item>
         <!-- 🌐-->    <item>lil</item>
         <!-- 📄-->    <item>lu</item>
         <!-- 🔴-->    <item>lj</item>
         <!-- 📍-->    <item>lo</item>
-        <!-- ✋-->    <item>lk</item>
+        <!-- ✋️-->    <item>lk</item>
         <!-- 👀-->    <item>ln</item>
         <!-- 🕳-->    <item>lp</item>
         <!-- 🏝-->    <item>mm</item>
@@ -58,71 +58,71 @@
         <!-- 👨-->    <item>mj</item>
         <!-- 🍽-->    <item>mk</item>
         <!-- 💀-->    <item>ml</item>
-        <!-- ⬅-->    <item>moo</item>
+        <!-- ⬅️-->    <item>moo</item>
         <!-- 👹-->    <item>mon</item>
         <!-- 😹-->    <item>mu</item>
         <!-- 🌙-->    <item>mn</item>
         <!-- 😃-->    <item>ms</item>
         <!-- 👐-->    <item>mt</item>
         <!-- 🧂-->    <item>nm</item>
-        <!-- #⃣-->    <item>na</item>
+        <!-- #️⃣-->    <item>na</item>
         <!-- 🌀-->    <item>ns</item>
         <!-- 🛣-->    <item>ni</item>
         <!-- 🗻-->    <item>ne</item>
         <!-- 💬-->    <item>nn</item>
         <!-- 🦵-->    <item>no</item>
         <!-- 👋-->    <item>oo</item>
-        <!-- 👁-->    <item tools:ignore="Typos">ok</item>
+        <!-- 👁️-->    <item tools:ignore="Typos">ok</item>
         <!-- 💕-->    <item>ol</item>
         <!-- 👆-->    <item>on</item>
         <!-- 🔓-->    <item>op</item>
         <!-- 💥-->    <item>pk</item>
         <!-- 🚧-->    <item>pe</item>
-        <!-- ✊-->    <item>pl</item>
+        <!-- ✊️-->    <item>pl</item>
         <!-- 📏-->    <item>ps</item>
         <!-- 🍞-->    <item>pa</item>
         <!-- 📤-->    <item>pn</item>
-        <!-- ⏹-->    <item>pp</item>
-        <!-- ❤-->    <item>pil</item>
-        <!-- ⚫-->    <item>pm</item>
+        <!-- ⏹️-->    <item>pp</item>
+        <!-- ❤️-->    <item>pil</item>
+        <!-- ⚫️-->    <item>pm</item>
         <!-- 🏁-->    <item>pii</item>
         <!-- 🐞-->    <item>pip</item>
-        <!-- ↔-->    <item>poo</item>
+        <!-- ↔️-->    <item>poo</item>
         <!-- 📦-->    <item>pok</item>
         <!-- 🧞-->    <item>pw</item>
         <!-- 📖-->    <item>pu</item>
-        <!-- ⚖-->    <item>sa</item>
+        <!-- ⚖️-->    <item>sa</item>
         <!-- 🔥-->    <item>sei</item>
         <!-- 🔲-->    <item>seo</item>
-        <!-- ❓-->    <item>sm</item>
-        <!-- ⬆-->    <item>see</item>
-        <!-- 🏋-->    <item>sj</item>
-        <!-- ⭕-->    <item>sk</item>
+        <!-- ❓️-->    <item>sm</item>
+        <!-- ⬆️-->    <item>see</item>
+        <!-- 🏋️-->    <item>sj</item>
+        <!-- ⭕️-->    <item>sk</item>
         <!-- 🎁-->    <item>si</item>
         <!-- 👉-->    <item>ss</item>
-        <!-- ➡-->    <item>sp</item>
+        <!-- ➡️-->    <item>sp</item>
         <!-- 🖼-->    <item>st</item>
         <!-- 🧠-->    <item>sn</item>
         <!-- 🐒-->    <item>sw</item>
         <!-- 🐘-->    <item>sl</item>
-        <!-- ☀-->    <item>so</item>
+        <!-- ☀️-->    <item>so</item>
         <!-- 🛏-->    <item>sup</item>
         <!-- 🍭-->    <item>suu</item>
-        <!-- ↩-->    <item>ta</item>
+        <!-- ↩️-->    <item>ta</item>
         <!-- 🤔-->    <item>ts</item>
-        <!-- ↪-->    <item>tt</item>
+        <!-- ↪️-->    <item>tt</item>
         <!-- 💧-->    <item>te</item>
-        <!-- ⏰-->    <item>tn</item>
+        <!-- ⏰️-->    <item>tn</item>
         <!-- 🏠-->    <item>to</item>
         <!-- ♐-->    <item>ti</item>
-        <!-- ✌-->    <item>tu</item>
+        <!-- ✌️-->    <item>tu</item>
         <!-- 🍆-->    <item>un</item>
         <!-- 👄-->    <item>ut</item>
-        <!-- ⚔-->    <item>uu</item>
-        <!-- ⚪-->    <item>wl</item>
-        <!-- ☝-->    <item>wn</item>
+        <!-- ⚔️-->    <item>uu</item>
+        <!-- ⚪️-->    <item>wl</item>
+        <!-- ☝️-->    <item>wn</item>
         <!-- 🦅-->    <item>ws</item>
-        <!-- ⚡-->    <item>wa</item>
+        <!-- ⚡️-->    <item>wa</item>
         <!-- 🛫-->    <item>we</item>
         <!-- 💭-->    <item>ww</item>
 
@@ -174,18 +174,18 @@
     <string-array name="words_emoji">
         <item>🦎</item>    <!-- ak -->
         <item>🏹</item>    <!-- al -->
-        <item>♾</item>    <!-- aa -->
-        <item>⬇</item>    <!-- an -->
+        <item>♾️</item>    <!-- aa -->
+        <item>⬇️</item>    <!-- an -->
         <item>🔀</item>    <!-- at -->
-        <item>☯</item>    <!-- au -->
+        <item>☯️</item>    <!-- au -->
         <item>😢</item>    <!-- ap -->
-        <item>⚓</item>    <!-- aw -->
-        <item>➕</item>    <!-- ee -->
+        <item>⚓️</item>    <!-- aw -->
+        <item>➕️</item>    <!-- ee -->
         <item>🛒</item>    <!-- es -->
         <item>🐚</item>    <!-- ij -->
         <item>👎</item>    <!-- ii -->
-        <item>⚙</item>    <!-- il -->
-        <item>⏺</item>    <!-- in -->
+        <item>⚙️</item>    <!-- il -->
+        <item>⏺️</item>    <!-- in -->
         <item>💩</item>    <!-- ja -->
         <item>👤</item>    <!-- jj -->
         <item>💛</item>    <!-- je -->
@@ -198,7 +198,7 @@
         <item>🔧</item>    <!-- kp -->
         <item>🍎</item>    <!-- kii -->
         <item>❕</item>    <!-- kin -->
-        <item>✂</item>    <!-- kip -->
+        <item>✂️</item>    <!-- kip -->
         <item>💎</item>    <!-- kw -->
         <item>🍦</item>    <!-- ko -->
         <item>💨</item>    <!-- kn -->
@@ -211,14 +211,14 @@
         <item>😶</item>    <!-- lw -->
         <item>🧱</item>    <!-- lek -->
         <item>👕</item>    <!-- lee -->
-        <item>❄</item>    <!-- lt -->
+        <item>❄️</item>    <!-- lt -->
         <item>🐭</item>    <!-- lii -->
-        <item>〰</item>    <!-- lin -->
+        <item>〰️</item>    <!-- lin -->
         <item>🌐</item>    <!-- lil -->
         <item>📄</item>    <!-- lu -->
         <item>🔴</item>    <!-- lj -->
         <item>📍</item>    <!-- lo -->
-        <item>✋</item>    <!-- lk -->
+        <item>✋️</item>    <!-- lk -->
         <item>👀</item>    <!-- ln -->
         <item>🕳</item>    <!-- lp -->
         <item>🏝</item>    <!-- mm -->
@@ -229,78 +229,78 @@
         <item>👨</item>    <!-- mj -->
         <item>🍽</item>    <!-- mk -->
         <item>💀</item>    <!-- ml -->
-        <item>⬅</item>    <!-- moo -->
+        <item>⬅️</item>    <!-- moo -->
         <item>👹</item>    <!-- mon -->
         <item>😹</item>    <!-- mu -->
         <item>🌙</item>    <!-- mn -->
         <item>😃</item>    <!-- ms -->
         <item>👐</item>    <!-- mt -->
         <item>🧂</item>    <!-- nm -->
-        <item>#⃣</item>    <!-- na -->
+        <item>#️⃣</item>    <!-- na -->
         <item>🌀</item>    <!-- ns -->
         <item>🛣</item>    <!-- ni -->
         <item>🗻</item>    <!-- ne -->
         <item>💬</item>    <!-- nn -->
         <item>🦵</item>    <!-- no -->
         <item>👋</item>    <!-- oo -->
-        <item>👁</item>    <!-- ok -->
+        <item>👁️</item>    <!-- ok -->
         <item>💕</item>    <!-- ol -->
         <item>👆</item>    <!-- on -->
         <item>🔓</item>    <!-- op -->
         <item>💥</item>    <!-- pk -->
         <item>🚧</item>    <!-- pe -->
-        <item>✊</item>    <!-- pl -->
+        <item>✊️</item>    <!-- pl -->
         <item>📏</item>    <!-- ps -->
         <item>🍞</item>    <!-- pa -->
         <item>📤</item>    <!-- pn -->
-        <item>⏹</item>    <!-- pp -->
-        <item>❤</item>    <!-- pil -->
-        <item>⚫</item>    <!-- pm -->
+        <item>⏹️</item>    <!-- pp -->
+        <item>❤️</item>    <!-- pil -->
+        <item>⚫️</item>    <!-- pm -->
         <item>🏁</item>    <!-- pii -->
         <item>🐞</item>    <!-- pip -->
-        <item>↔</item>    <!-- poo -->
+        <item>↔️</item>    <!-- poo -->
         <item>📦</item>    <!-- pok -->
         <item>🧞</item>    <!-- pw -->
         <item>📖</item>    <!-- pu -->
-        <item>⚖</item>    <!-- sa -->
+        <item>⚖️</item>    <!-- sa -->
         <item>🔥</item>    <!-- sei -->
         <item>🔲</item>    <!-- seo -->
-        <item>❓</item>    <!-- sm -->
-        <item>⬆</item>    <!-- see -->
-        <item>🏋</item>    <!-- sj -->
-        <item>⭕</item>    <!-- sk -->
+        <item>❓️</item>    <!-- sm -->
+        <item>⬆️</item>    <!-- see -->
+        <item>🏋️</item>    <!-- sj -->
+        <item>⭕️</item>    <!-- sk -->
         <item>🎁</item>    <!-- si -->
         <item>👉</item>    <!-- ss -->
-        <item>➡</item>    <!-- sp -->
+        <item>➡️</item>    <!-- sp -->
         <item>🖼</item>    <!-- st -->
         <item>🧠</item>    <!-- sn -->
         <item>🐒</item>    <!-- sw -->
         <item>🐘</item>    <!-- sl -->
-        <item>☀</item>    <!-- so -->
+        <item>☀️</item>    <!-- so -->
         <item>🛏</item>    <!-- sup -->
         <item>🍭</item>    <!-- suu -->
-        <item>↩</item>    <!-- ta -->
+        <item>↩️</item>    <!-- ta -->
         <item>🤔</item>    <!-- ts -->
-        <item>↪</item>    <!-- tt -->
+        <item>↪️</item>    <!-- tt -->
         <item>💧</item>    <!-- te -->
-        <item>⏰</item>    <!-- tn -->
+        <item>⏰️</item>    <!-- tn -->
         <item>🏠</item>    <!-- to -->
         <item>♐</item>    <!-- ti -->
-        <item>✌</item>    <!-- tu -->
+        <item>✌️</item>    <!-- tu -->
         <item>🍆</item>    <!-- un -->
         <item>👄</item>    <!-- ut -->
-        <item>⚔</item>    <!-- uu -->
-        <item>⚪</item>    <!-- wl -->
-        <item>☝</item>    <!-- wn -->
+        <item>⚔️</item>    <!-- uu -->
+        <item>⚪️</item>    <!-- wl -->
+        <item>☝️</item>    <!-- wn -->
         <item>🦅</item>    <!-- ws -->
-        <item>⚡</item>    <!-- wa -->
+        <item>⚡️</item>    <!-- wa -->
         <item>🛫</item>    <!-- we -->
         <item>💭</item>    <!-- ww -->
 
         <item>❗</item>
         <item>❌</item>
         <item>⏩</item>
-        <item>▶</item>
+        <item>▶️</item>
         <item>👈</item>
         <item>👇</item>
         <item>👍</item>
