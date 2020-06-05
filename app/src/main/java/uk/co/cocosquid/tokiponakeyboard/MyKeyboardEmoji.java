@@ -444,6 +444,8 @@ public class MyKeyboardEmoji extends MyKeyboardAbstract {
         String charOnLeft = getPreviousCharacter();
         if ("aeijklmnopstuwAEIJKLMNOPSTUW".contains(charOnLeft) && !charOnLeft.isEmpty()) {
             currentShortcut = "x";
+        } else {
+            currentShortcut = "";
         }
         setLayout(currentShortcut);
     }
