@@ -32,7 +32,6 @@
 
     </PreferenceCategory>
 
-    <!--
     <PreferenceCategory
         app:key="behaviour_category"
         app:title="Behaviour">
@@ -42,6 +41,5 @@
             app:title="Enable sitelen Emoji mode" />
 
     </PreferenceCategory>
-    -->
 
 </PreferenceScreen>
