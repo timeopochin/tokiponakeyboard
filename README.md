@@ -11,7 +11,7 @@
    + [Compound glyphs](#compound-glyphs)
    + [Special behavior](#special-behavior)
  + [Installation](#installation)
-   + [Download precompiled version](download-precompiled-version)
+   + [Download precompiled version](#download-precompiled-version)
    + [Build from source](#build-from-source)
  + [Help improve this project](#help-improve-this-project)
  + [Support me](#support-me)
@@ -21,7 +21,7 @@
 
 ## What is Toki Pona Keyboard?
 
-Toki Pona Keyboard is an android application that adds an input method specifically for writing in the language [toki pona](https://tokipona.org/) created by Sonja Lang. The keyboard uses the hieroglyphic writing system called [sitelen pona](http://tokipona.net/tp/janpije/hieroglyphs.php). This means that the users enter entire words rather than typing one letter at a time.
+Toki Pona Keyboard is an android application that adds an input method specifically for writing in Sonja Lang's [toki pona](https://tokipona.org/) language. The keyboard uses the hieroglyphic writing system called [sitelen pona](http://tokipona.net/tp/janpije/hieroglyphs.php). This means that the users enter entire words rather than typing one letter at a time.
 
 
 
@@ -32,7 +32,7 @@ Toki Pona Keyboard is an android application that adds an input method specifica
 
 ## How I made it
 
-This keyboard was built using the [standard android libraries](https://developer.android.com/). It types plain text and therefore it can be used anywhere to type in toki pona. The keys themselves also contain simple text but are styled into hieroglyphics with the [linja pona 4.2]() font. This font is also active on some of the screenshots, but the way the words are rendered is completely dependent on the app that the text is on.
+This keyboard was built using the [standard android libraries](https://developer.android.com/). It types plain text and therefore it can be used anywhere to type in toki pona. The keys themselves also contain simple text but are styled into hieroglyphics with the [linja pona 4.2](http://musilili.net/linja-pona/) font. This font is also active on some of the screenshots, but the way the words are rendered is completely dependent on the app that the text is on.
 
 
 <a name="the-layout"/>
@@ -58,7 +58,7 @@ The keyboard is made up of three sections:
 
  ![](other/images/keyboard-intermediate-key.jpg)
 
-Here, you are presented with more word keys that will simply type the word as well as:
+Here, you are presented with more word keys that will simply type the word, as well as:
 
 ![](other/images/unofficial.jpg) Unofficial (non pu) words - which are essentially word keys.
 
@@ -94,11 +94,12 @@ Some keys have their own special behaviors:
 <a name="installation"/>
 
 ## Installation
+
 <a name="download-precompiled-version"/>
 
 ### Download precompiled version
 
-This app is in development and only in the Alpha Testing phases. You cannot search for this app on the Play Store yet but you can become an Alpha Tester to gain access to it here:
+This app is in development and only in the Alpha Testing phases. You cannot search for this app on the Play Store yet but you can become an Alpha Tester to gain access to it by [joining the Alpha Testing group](https://groups.google.com/forum/#!forum/toki-pona-keyboard-alpha-testing/join) and then getting the app from here:
 
 <a href='https://play.google.com/apps/testing/uk.co.cocosquid.tokiponakeyboard'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height='80px'/></a>
 
