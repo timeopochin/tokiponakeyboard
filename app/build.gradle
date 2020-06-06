@@ -8,8 +8,8 @@ android {
         applicationId "uk.co.cocosquid.tokiponakeyboard"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 8
-        versionName "1.0.0-alpha.4"
+        versionCode 9
+        versionName "1.0.0-alpha.5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
