@@ -6,6 +6,7 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.widget.Button;
 
@@ -276,7 +277,7 @@ public class MyKeyboard extends MyKeyboardAbstract {
 
                         // Switch subtype
                         finishAction("finish");
-                        if ("aeijklmnopstuwAEIJKLMNOPSTUW".contains(getPreviousCharacter())) {
+                        if (!cursorAtStart()) {
                             write(" ");
                         }
                         inputMethodService.setEmojiMode(true);
@@ -323,6 +324,10 @@ public class MyKeyboard extends MyKeyboardAbstract {
             label:
             for (int i = beforeCursorText.length() - 1; i >= 0; i--) {
                 String currentString = Character.toString(beforeCursorText.charAt(i));
+                if (!"aeijklmnopstuw[]“”.:?! _-".contains(currentString)) {
+                    inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+                    break;
+                }
                 switch (currentString) {
                     case "\n":
                     case "“":
@@ -459,7 +464,7 @@ public class MyKeyboard extends MyKeyboardAbstract {
         String charOnLeft = getPreviousCharacter();
 
         boolean adjust = true;
-        if ("],”.:?!\n".contains(charOnLeft) || " _],”.:?!\n".contains(charOnRight)) {
+        if ("],”.:?!\n".contains(charOnLeft) || " _],”.:?!\n".contains(charOnRight) || !"aeijklmnopstuw[]“”.:?! _-".contains(charOnLeft) || !"aeijklmnopstuw[]“”.:?! _-".contains(charOnRight)) {
 
             // Do not adjust cursor position
             adjust = false;
