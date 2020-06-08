@@ -163,7 +163,7 @@ public class MyKeyboard extends MyKeyboardAbstract {
                             // Move cursor inside brackets
                             moveCursorBackOne();
 
-                            setBracket(true);
+                            updateCurrentState();
                         }
                         break;
                     case "%“":
