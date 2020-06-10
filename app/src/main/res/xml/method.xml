@@ -1,3 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<input-method>
+<input-method xmlns:android="http://schemas.android.com/apk/res/android"
+    android:settingsActivity="uk.co.cocosquid.tokiponakeyboard.TokiPonaIMESettings">
 </input-method>
